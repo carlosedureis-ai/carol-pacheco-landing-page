@@ -97,66 +97,52 @@
                         </div>
                     </div>
 
-                    <!-- CHAPTER 02: SERVIÇOS (Design adaptado para sobreposição escura) -->
-                    <div id="chapter-02" class="absolute inset-0 flex flex-col justify-center px-6 md:px-16 lg:px-[10%] pointer-events-auto">
-                        <div class="max-w-[1400px] w-full mx-auto">
-                            
-                            <div class="mb-16 md:mb-24">
-                                <p id="ch2-eyebrow" class="text-[10px] md:text-xs font-semibold tracking-[0.2em] uppercase text-[#D1A77D] mb-6 md:mb-8 opacity-0">Serviços</p>
-                                <h2 id="ch2-h2" class="font-serif text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.0] text-white max-w-3xl opacity-0">
-                                    Que espaço<br>
-                                    você quer<br>
-                                    transformar?
+                    <!-- CHAPTER 02: SERVIÇOS (Arte visual transparente fornecida) -->
+                    <div id="chapter-02" class="absolute inset-0 flex flex-col justify-center px-6 md:px-16 lg:px-[10%] opacity-0 pointer-events-none" style="transform: translateY(15px);">
+                        
+                        <!-- ACESSIBILIDADE (Semantic Screen Readers) -->
+                        <div class="sr-only">
+                            <h2>Serviços - Que espaço você quer transformar?</h2>
+                            <p>Cada projeto começa entendendo como você vive, trabalha e deseja sentir aquele espaço.</p>
+                            <ul>
+                                <li>01 Residencial: Casas pensadas para sua rotina, identidade e forma de viver.</li>
+                                <li>02 Interiores: Ambientes que equilibram estética, funcionalidade e conforto.</li>
+                                <li>03 Comercial: Espaços que comunicam posicionamento e experiência de marca.</li>
+                            </ul>
+                        </div>
+
+                        <!-- ARTE EDITORIAL (Desktop/Tablet) -->
+                        <img 
+                            class="w-full h-auto max-w-[1500px] mx-auto object-contain pointer-events-none hidden md:block" 
+                            style="width: calc(100% - 2rem);"
+                            src="./services-artwork.png" 
+                            alt=""
+                        />
+
+                        <!-- ESTRUTURA MOBILE (Fallback para telas pequenas onde a arte não fica legível) -->
+                        <div class="md:hidden flex flex-col gap-8 w-full mx-auto pointer-events-auto">
+                            <div>
+                                <p class="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#D1A77D] mb-4">Serviços</p>
+                                <h2 class="font-serif text-[2.5rem] leading-[1.0] text-white mb-6">
+                                    Que espaço<br>você quer<br>transformar?
                                 </h2>
-                                <p id="ch2-p" class="mt-8 md:mt-12 text-base md:text-xl text-white/70 max-w-[45ch] font-light leading-relaxed opacity-0">
-                                    Cada projeto começa entendendo como você vive, trabalha e deseja sentir aquele espaço.
-                                </p>
                             </div>
-
-                            <!-- LINHA SEPARADORA ANIMADA -->
-                            <div id="ch2-line" class="w-full h-px bg-white/10 mb-12 origin-left opacity-0" style="transform: scaleX(0);"></div>
-
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-y-0 md:gap-x-12 relative">
-                                <!-- Item 1 -->
-                                <div id="ch2-item1" class="group relative opacity-0">
-                                    <div class="flex justify-between items-start mb-8 md:mb-16">
-                                        <span class="text-xs md:text-sm font-medium text-[#D1A77D]">01</span>
-                                    </div>
-                                    <div class="mt-auto">
-                                        <h3 class="font-serif text-3xl md:text-4xl text-white mb-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">Residencial</h3>
-                                        <p class="text-white/60 text-sm md:text-base font-light leading-relaxed">
-                                            Casas pensadas para sua rotina, identidade e forma de viver.
-                                        </p>
-                                    </div>
+                            <div class="flex flex-col gap-6 border-t border-white/20 pt-6">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                                    <span class="text-sm font-medium text-[#D1A77D]">01 <span class="ml-4 font-serif text-xl text-white tracking-wide">RESIDENCIAL</span></span>
+                                    <span class="text-[#D1A77D]">→</span>
                                 </div>
-                                
-                                <!-- Item 2 -->
-                                <div id="ch2-item2" class="group relative opacity-0">
-                                    <div class="flex justify-between items-start mb-8 md:mb-16">
-                                        <span class="text-xs md:text-sm font-medium text-[#D1A77D]">02</span>
-                                    </div>
-                                    <div class="mt-auto">
-                                        <h3 class="font-serif text-3xl md:text-4xl text-white mb-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">Interiores</h3>
-                                        <p class="text-white/60 text-sm md:text-base font-light leading-relaxed">
-                                            Ambientes que equilibram estética, funcionalidade e conforto.
-                                        </p>
-                                    </div>
+                                <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                                    <span class="text-sm font-medium text-[#D1A77D]">02 <span class="ml-4 font-serif text-xl text-white tracking-wide">INTERIORES</span></span>
+                                    <span class="text-[#D1A77D]">→</span>
                                 </div>
-                                
-                                <!-- Item 3 -->
-                                <div id="ch2-item3" class="group relative opacity-0">
-                                    <div class="flex justify-between items-start mb-8 md:mb-16">
-                                        <span class="text-xs md:text-sm font-medium text-[#D1A77D]">03</span>
-                                    </div>
-                                    <div class="mt-auto">
-                                        <h3 class="font-serif text-3xl md:text-4xl text-white mb-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">Comercial</h3>
-                                        <p class="text-white/60 text-sm md:text-base font-light leading-relaxed">
-                                            Espaços que comunicam o posicionamento e a experiência da sua marca.
-                                        </p>
-                                    </div>
+                                <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                                    <span class="text-sm font-medium text-[#D1A77D]">03 <span class="ml-4 font-serif text-xl text-white tracking-wide">COMERCIAL</span></span>
+                                    <span class="text-[#D1A77D]">→</span>
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                     <!-- CHAPTER 03... FUTUROS AMBIENTES... -->
@@ -237,21 +223,15 @@
                 // ==============================================================
                 // CHAPTER 02: SERVIÇOS SOBRE O VÍDEO (32% -> Permanece até 100%)
                 // ==============================================================
-                // O vídeo continua rodando por trás normalmente!
-                
-                // Eyebrow aparece aos 32%
-                masterTl.to("#ch2-eyebrow", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 32);
-                // H2 aparece aos 35%
-                masterTl.to("#ch2-h2", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 35);
-                // Parágrafo aparece aos 39%
-                masterTl.to("#ch2-p", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 39);
-                // Linha animada aparece (crescendo e surgindo) aos 41%
-                masterTl.to("#ch2-line", { opacity: 1, scaleX: 1, duration: 4, ease: "power2.out" }, 41);
-                
-                // Itens (Cards) aparecendo de forma escalonada
-                masterTl.to("#ch2-item1", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 43);
-                masterTl.to("#ch2-item2", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 46);
-                masterTl.to("#ch2-item3", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 49);
+                // Entra como uma peça editorial única
+                masterTl.to("#chapter-02", {
+                    opacity: 1,
+                    y: 0,
+                    ease: "power2.out",
+                    duration: 8,
+                    onStart: () => document.getElementById("chapter-02").style.pointerEvents = 'auto',
+                    onReverseComplete: () => document.getElementById("chapter-02").style.pointerEvents = 'none'
+                }, 32);
 
                 // O capítulo de Serviços permanecerá visível até o final da timeline
                 // Quando adicionarmos o Chapter 03, incluiremos a saída de Serviços aqui!
@@ -263,10 +243,7 @@
                 // e saídas podem ser mapeadas entre 70 e 100 no masterTl.
             };
 
-            // Setup inicial das propriedades de entrada (y) do chapter 2 para a animação vir de baixo
-            gsap.set(["#ch2-eyebrow", "#ch2-h2", "#ch2-p", "#ch2-item1", "#ch2-item2", "#ch2-item3"], {
-                y: 30
-            });
+
 
             // Forçar o carregamento
             video.currentTime = 0.01;
