@@ -20,99 +20,40 @@
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #000;
-            /* IMPORTANTE: overflow-x: hidden no body QUEBRA o position: sticky no CSS nativo.
-               Removido para garantir que o scroll cinematográfico funcione perfeitamente. */
         }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
-        
-        /* SCROLLTRIGGER ENTRANCE ANIMATIONS */
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-        .reveal-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-            .reveal-on-scroll {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
-            }
-        }
     </style>
 </head>
 <body class="antialiased text-white">
 
     <main class="relative w-full">
-        <!-- HERO SCROLL WRAPPER -->
-        <!-- Altura de 300vh para permitir um longo tempo de scroll. -->
-        <div id="hero-scroll-wrapper" class="relative w-full h-[300vh]">
+        
+        <!-- HOUSE EXPERIENCE (Wrapper global do passeio de vídeo) -->
+        <!-- Altura de 600vh para permitir um tempo de scroll cinematográfico e confortável. -->
+        <div id="house-experience" class="relative w-full h-[600vh] bg-black">
             
-            <!-- STICKY HERO -->
-            <!-- O sticky mantém esse elemento preso no topo da tela enquanto rolamos o wrapper de 300vh -->
-            <div class="sticky top-0 w-full h-[100svh] overflow-hidden z-0 bg-black">
+            <!-- HOUSE VIDEO STAGE (O palco sticky onde os capítulos acontecem sobre o vídeo) -->
+            <div id="house-video-stage" class="sticky top-0 w-full h-[100svh] overflow-hidden z-10">
                 
-                <!-- VIDEO BACKGROUND -->
-                <!-- PAUSADO. Sem autoplay. Sem loop. O tempo é manipulado pelo GSAP. -->
-                <div id="hero-bg" class="absolute inset-0 w-full h-full origin-center">
+                <!-- LAYER 1: VÍDEO -->
+                <div class="absolute inset-0 w-full h-full z-[1]">
+                    <!-- playsinline, muted, preload, SEM autoplay e SEM loop -->
                     <video 
-                        id="hero-video"
+                        id="house-scroll-video"
                         class="w-full h-full object-cover"
                         muted 
                         playsinline
                         preload="auto">
                         <source src="./hero-bg-optimized.mp4" type="video/mp4">
                     </video>
-                    
-                    <!-- OVERLAY -->
-                    <div class="absolute inset-0 bg-black/40 pointer-events-none"></div>
-                    <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
-                </div>
-
-                <!-- HERO CONTENT -->
-                <div id="hero-content" class="relative z-10 flex flex-col justify-center h-full px-6 md:px-16 lg:px-[10%]">
-                    <div class="max-w-[1400px] w-full mx-auto">
-                        <div class="mb-6 md:mb-10">
-                            <p class="text-[10px] md:text-xs tracking-[0.2em] uppercase font-semibold text-white/90">
-                                Carol Pacheco
-                                <span class="opacity-50 mx-3">|</span> 
-                                <span class="font-normal opacity-80">Arquiteta <span class="hidden sm:inline">| Sócia Archsoul</span></span>
-                            </p>
-                        </div>
-                        
-                        <h1 class="font-serif text-[clamp(2.5rem,6vw,6rem)] leading-[1.05] text-white mb-6 md:mb-8 max-w-4xl">
-                            Arquitetura que <br class="hidden sm:block">
-                            transforma espaços <br class="hidden sm:block">
-                            em parte da <span class="text-[#D1A77D] italic">sua história.</span>
-                        </h1>
-                        
-                        <p class="text-base md:text-xl text-white/80 max-w-[45ch] mb-10 md:mb-12 font-light leading-relaxed">
-                            Projetos residenciais e comerciais pensados para unir identidade, funcionalidade e propósito.
-                        </p>
-                        
-                        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                            <a href="#contato" class="inline-flex justify-center items-center bg-[var(--accent-gold)] hover:bg-[var(--accent-gold-hover)] text-white px-8 py-4 text-xs md:text-sm tracking-wide font-medium transition-colors">
-                                QUERO CONVERSAR SOBRE MEU PROJETO <span class="ml-3 font-serif italic text-lg leading-none">→</span>
-                            </a>
-                            <a href="#projetos" class="inline-flex justify-center items-center border border-white/20 hover:border-white/60 text-white px-8 py-4 text-xs md:text-sm tracking-wide font-medium transition-colors">
-                                VER PROJETOS
-                            </a>
-                        </div>
-                    </div>
                 </div>
                 
-                <header class="absolute top-0 w-full p-6 md:px-16 lg:px-[10%] flex justify-between items-center z-20">
+                <!-- LAYER 2: OVERLAYS DE LEGIBILIDADE -->
+                <div class="absolute inset-0 bg-black/30 z-[2] pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-[2] pointer-events-none"></div>
+
+                <!-- LAYER 4: HEADER -->
+                <header class="absolute top-0 w-full p-6 md:px-16 lg:px-[10%] flex justify-between items-center z-[4]">
                     <div class="font-serif text-2xl italic text-white/90">CP</div>
                     <nav class="hidden md:flex gap-8 text-xs tracking-wider uppercase text-white/70">
                         <a href="#" class="hover:text-white transition-colors">Início</a>
@@ -120,184 +61,222 @@
                         <a href="#" class="hover:text-white transition-colors">Sobre</a>
                     </nav>
                 </header>
+
+                <!-- LAYER 3: CHAPTERS (Conteúdos sobrepostos) -->
+                <div id="experience-content" class="absolute inset-0 z-[3] pointer-events-none">
+                    
+                    <!-- CHAPTER 01: HERO -->
+                    <div id="chapter-01" class="absolute inset-0 flex flex-col justify-center px-6 md:px-16 lg:px-[10%] pointer-events-auto">
+                        <div class="max-w-[1400px] w-full mx-auto">
+                            <div class="mb-6 md:mb-10">
+                                <p class="text-[10px] md:text-xs tracking-[0.2em] uppercase font-semibold text-white/90">
+                                    Carol Pacheco
+                                    <span class="opacity-50 mx-3">|</span> 
+                                    <span class="font-normal opacity-80">Arquiteta <span class="hidden sm:inline">| Sócia Archsoul</span></span>
+                                </p>
+                            </div>
+                            
+                            <h1 class="font-serif text-[clamp(2.5rem,6vw,6rem)] leading-[1.05] text-white mb-6 md:mb-8 max-w-4xl">
+                                Arquitetura que <br class="hidden sm:block">
+                                transforma espaços <br class="hidden sm:block">
+                                em parte da <span class="text-[#D1A77D] italic">sua história.</span>
+                            </h1>
+                            
+                            <p class="text-base md:text-xl text-white/80 max-w-[45ch] mb-10 md:mb-12 font-light leading-relaxed">
+                                Projetos residenciais e comerciais pensados para unir identidade, funcionalidade e propósito.
+                            </p>
+                            
+                            <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                                <a href="#contato" class="inline-flex justify-center items-center bg-[var(--accent-gold)] hover:bg-[var(--accent-gold-hover)] text-white px-8 py-4 text-xs md:text-sm tracking-wide font-medium transition-colors">
+                                    QUERO CONVERSAR SOBRE MEU PROJETO <span class="ml-3 font-serif italic text-lg leading-none">→</span>
+                                </a>
+                                <a href="#projetos" class="inline-flex justify-center items-center border border-white/20 hover:border-white/60 text-white px-8 py-4 text-xs md:text-sm tracking-wide font-medium transition-colors">
+                                    VER PROJETOS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CHAPTER 02: SERVIÇOS (Design adaptado para sobreposição escura) -->
+                    <div id="chapter-02" class="absolute inset-0 flex flex-col justify-center px-6 md:px-16 lg:px-[10%] pointer-events-auto">
+                        <div class="max-w-[1400px] w-full mx-auto">
+                            
+                            <div class="mb-16 md:mb-24">
+                                <p id="ch2-eyebrow" class="text-[10px] md:text-xs font-semibold tracking-[0.2em] uppercase text-[#D1A77D] mb-6 md:mb-8 opacity-0">Serviços</p>
+                                <h2 id="ch2-h2" class="font-serif text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.0] text-white max-w-3xl opacity-0">
+                                    Que espaço<br>
+                                    você quer<br>
+                                    transformar?
+                                </h2>
+                                <p id="ch2-p" class="mt-8 md:mt-12 text-base md:text-xl text-white/70 max-w-[45ch] font-light leading-relaxed opacity-0">
+                                    Cada projeto começa entendendo como você vive, trabalha e deseja sentir aquele espaço.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-y-0 md:gap-x-12 relative border-t border-white/10 pt-12">
+                                <!-- Item 1 -->
+                                <div id="ch2-item1" class="group relative opacity-0">
+                                    <div class="flex justify-between items-start mb-8 md:mb-16">
+                                        <span class="text-xs md:text-sm font-medium text-[#D1A77D]">01</span>
+                                    </div>
+                                    <div class="mt-auto">
+                                        <h3 class="font-serif text-3xl md:text-4xl text-white mb-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">Residencial</h3>
+                                        <p class="text-white/60 text-sm md:text-base font-light leading-relaxed">
+                                            Casas pensadas para sua rotina, identidade e forma de viver.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Item 2 -->
+                                <div id="ch2-item2" class="group relative opacity-0">
+                                    <div class="flex justify-between items-start mb-8 md:mb-16">
+                                        <span class="text-xs md:text-sm font-medium text-[#D1A77D]">02</span>
+                                    </div>
+                                    <div class="mt-auto">
+                                        <h3 class="font-serif text-3xl md:text-4xl text-white mb-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">Interiores</h3>
+                                        <p class="text-white/60 text-sm md:text-base font-light leading-relaxed">
+                                            Ambientes que equilibram estética, funcionalidade e conforto.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Item 3 -->
+                                <div id="ch2-item3" class="group relative opacity-0">
+                                    <div class="flex justify-between items-start mb-8 md:mb-16">
+                                        <span class="text-xs md:text-sm font-medium text-[#D1A77D]">03</span>
+                                    </div>
+                                    <div class="mt-auto">
+                                        <h3 class="font-serif text-3xl md:text-4xl text-white mb-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">Comercial</h3>
+                                        <p class="text-white/60 text-sm md:text-base font-light leading-relaxed">
+                                            Espaços que comunicam o posicionamento e a experiência da sua marca.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CHAPTER 03... FUTUROS AMBIENTES... -->
+
+                </div>
+            </div>
+        </div>
+        
+        <!-- PÓS-EXPERIÊNCIA (O resto do site continua naturalmente daqui) -->
+        <div class="normal-page-content relative z-20 bg-[var(--bg-sand)] text-[var(--text-dark)] min-h-screen pt-32 pb-32">
+            <div class="max-w-[1400px] mx-auto px-6 md:px-16 lg:px-[10%] text-center">
+                <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#8c8273] mb-6">Fim do Passeio</p>
+                <h2 class="font-serif text-4xl md:text-6xl text-[var(--text-dark)] mb-12">Portfólio & Sobre</h2>
+                <p class="text-lg text-[var(--text-muted)] font-light max-w-2xl mx-auto">
+                    A partir deste ponto, o site retoma o formato tradicional, com seções roláveis normalmente.
+                </p>
             </div>
         </div>
 
-        <!-- SEGUNDA SESSÃO (SERVIÇOS) -->
-        <section id="second-section" class="relative z-10 bg-[var(--bg-sand)] text-[var(--text-dark)] rounded-t-[32px] md:rounded-t-[48px] -mt-[100vh] min-h-screen pt-24 pb-32 px-6 md:px-16 lg:px-[10%] shadow-[0_-20px_60px_rgba(0,0,0,0.3)]">
-            <div class="max-w-[1400px] mx-auto w-full">
-                
-                <div id="second-title" class="mb-20 md:mb-32 reveal-on-scroll" data-trigger>
-                    <p class="text-[10px] md:text-xs font-semibold tracking-[0.2em] uppercase text-[#8c8273] mb-6 md:mb-8">Serviços</p>
-                    <h2 class="font-serif text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.0] text-[var(--text-dark)] max-w-3xl">
-                        Que espaço<br>
-                        você quer<br>
-                        transformar?
-                    </h2>
-                    <p class="mt-8 md:mt-12 text-base md:text-xl text-[var(--text-muted)] max-w-[45ch] font-light leading-relaxed">
-                        Cada projeto começa entendendo como você vive, trabalha e deseja sentir aquele espaço.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-y-16 md:gap-y-0 relative md:border-t border-[var(--border-color)] md:pt-16 stagger-group" data-trigger>
-                    <!-- Item 1 -->
-                    <div class="group cursor-pointer relative md:border-r border-[var(--border-color)] md:pr-10 lg:pr-16 flex flex-col h-full border-t border-[var(--border-color)] pt-8 md:border-t-0 md:pt-0 card reveal-on-scroll">
-                        <div class="flex justify-between items-start mb-12 md:mb-24">
-                            <span class="text-xs md:text-sm font-medium text-[#8c8273]">01</span>
-                            <span class="text-lg md:text-xl font-light transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1 text-[var(--text-dark)]">↗</span>
-                        </div>
-                        <div class="mt-auto">
-                            <h3 class="font-serif text-3xl md:text-4xl text-[var(--text-dark)] mb-4 md:mb-6 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">Residencial</h3>
-                            <p class="text-[var(--text-muted)] text-sm md:text-base font-light leading-relaxed">
-                                Casas pensadas para sua rotina, identidade e forma de viver.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 2 -->
-                    <div class="group cursor-pointer relative md:border-r border-[var(--border-color)] md:px-10 lg:px-16 flex flex-col h-full border-t border-[var(--border-color)] pt-8 md:border-t-0 md:pt-0 card reveal-on-scroll">
-                        <div class="flex justify-between items-start mb-12 md:mb-24">
-                            <span class="text-xs md:text-sm font-medium text-[#8c8273]">02</span>
-                            <span class="text-lg md:text-xl font-light transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1 text-[var(--text-dark)]">↗</span>
-                        </div>
-                        <div class="mt-auto">
-                            <h3 class="font-serif text-3xl md:text-4xl text-[var(--text-dark)] mb-4 md:mb-6 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">Interiores</h3>
-                            <p class="text-[var(--text-muted)] text-sm md:text-base font-light leading-relaxed">
-                                Ambientes que equilibram estética, funcionalidade e conforto.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 3 -->
-                    <div class="group cursor-pointer relative md:pl-10 lg:pl-16 flex flex-col h-full border-t border-[var(--border-color)] pt-8 md:border-t-0 md:pt-0 card reveal-on-scroll">
-                        <div class="flex justify-between items-start mb-12 md:mb-24">
-                            <span class="text-xs md:text-sm font-medium text-[#8c8273]">03</span>
-                            <span class="text-lg md:text-xl font-light transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1 text-[var(--text-dark)]">↗</span>
-                        </div>
-                        <div class="mt-auto">
-                            <h3 class="font-serif text-3xl md:text-4xl text-[var(--text-dark)] mb-4 md:mb-6 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">Comercial</h3>
-                            <p class="text-[var(--text-muted)] text-sm md:text-base font-light leading-relaxed">
-                                Espaços que comunicam o posicionamento e a experiência da sua marca.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
+    <!-- GSAP CORE & SCROLLTRIGGER -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
-    <!-- TRUQUE PARA EVITAR CONFLITO DE VARIÁVEIS GLOBAIS (AMBAS USAM "ScrollTrigger") -->
     <script>
-        // Salva o ScrollTrigger do GSAP antes que a outra biblioteca o sobrescreva
-        window.GsapScrollTrigger = window.ScrollTrigger;
-    </script>
-    
-    <!-- Carrega o terwanerik/scrolltrigger -->
-    <script src="https://cdn.jsdelivr.net/npm/@terwanerik/scrolltrigger@1.0.5/dist/ScrollTrigger.min.js"></script>
-    
-    <script>
-        // Salva o terwanerik em uma variável segura e devolve a original ao GSAP
-        const TerwanerikScrollTrigger = window.ScrollTrigger.default || window.ScrollTrigger;
-        window.ScrollTrigger = window.GsapScrollTrigger;
-
         document.addEventListener("DOMContentLoaded", () => {
             
-            // ==========================================
-            // 1. ANIMAÇÕES DE ENTRADA (Segunda Seção)
-            // ==========================================
-            const st = new TerwanerikScrollTrigger();
-            
-            st.add('#second-title', {
-                once: true,
-                offset: { viewport: { y: 0.15 } },
-                toggle: { class: { in: 'visible' } }
-            });
+            gsap.registerPlugin(ScrollTrigger);
 
-            st.add('.stagger-group', {
-                once: true,
-                offset: { viewport: { y: 0.15 } },
-                toggle: {
-                    callback: {
-                        in: (triggerElement) => {
-                            const cards = triggerElement.element.querySelectorAll('.card');
-                            cards.forEach((card, index) => {
-                                setTimeout(() => {
-                                    card.classList.add('visible');
-                                }, index * 100);
-                            });
-                        }
-                    }
-                }
-            });
-
-            // ==========================================
-            // 2. VÍDEO SCRUB & HERO SCROLL (GSAP)
-            // ==========================================
-            const video = document.getElementById("hero-video");
-            const heroContent = document.getElementById("hero-content");
-            
-            // Registrar plugin do GSAP
-            gsap.registerPlugin(window.ScrollTrigger); 
-
+            const video = document.getElementById("house-scroll-video");
             let isInitialized = false;
 
             const initAnimations = () => {
                 if (isInitialized) return;
                 isInitialized = true;
 
-                // Garante uma duração válida (mesmo se o navegador bloquear leitura em arquivo local)
                 let duration = video.duration;
                 if (!duration || !isFinite(duration)) {
                     duration = 5; 
                 }
 
-                // Usar o próprio elemento de vídeo diretamente no GSAP é a forma mais performática
-                // O GSAP tem otimizações internas profundas para a propriedade 'currentTime'
-                const heroTl = gsap.timeline({
+                // ==============================================================
+                // TIMELINE PRINCIPAL (Mapeada 0% a 100% de .house-experience)
+                // ==============================================================
+                const masterTl = gsap.timeline({
                     scrollTrigger: {
-                        trigger: "#hero-scroll-wrapper",
+                        trigger: "#house-experience",
                         start: "top top",
-                        end: "bottom bottom",
-                        scrub: 0.15, // Restaura o scrub para 0.15 para fluidez sem atraso exagerado
+                        end: "bottom bottom", // Acaba exatamente quando os 600vh de wrapper terminam
+                        scrub: 0.15, // Mantém a inércia fluida nativa
                     }
                 });
 
-                // Duração base de 100 para criar a porcentagem perfeita
-                heroTl.to({}, { duration: 100 });
+                // Define a duração base matemática de 100 para trabalharmos com % facilmente
+                masterTl.to({}, { duration: 100 });
 
-                // VÍDEO: Corre do início ao fim durante os 100% de scroll, sem proxy intermediário
-                heroTl.to(video, {
+                // VÍDEO (Roda perfeitamente de 0% a 100% do wrapper)
+                masterTl.to(video, {
                     currentTime: duration - 0.1, 
                     ease: "none",
                     duration: 100
                 }, 0);
 
-                // TEXTO: Desaparece entre 70% e 85% do trajeto
-                if (heroContent) {
-                    heroTl.to(heroContent, {
-                        opacity: 0,
-                        y: -30,
-                        ease: "power2.inOut",
-                        duration: 15,
-                        onStart: () => heroContent.style.pointerEvents = 'none',
-                        onReverseComplete: () => heroContent.style.pointerEvents = 'auto'
-                    }, 70);
-                }
+                // ==============================================================
+                // CHAPTER 01: HERO (0% -> 30%)
+                // ==============================================================
+                // Começa a sumir em 20%, totalmente invisível em 30%
+                masterTl.to("#chapter-01", {
+                    opacity: 0,
+                    y: -30,
+                    ease: "power2.inOut",
+                    duration: 10, // de 20% a 30%
+                    onStart: () => document.getElementById("chapter-01").style.pointerEvents = 'none',
+                    onReverseComplete: () => document.getElementById("chapter-01").style.pointerEvents = 'auto'
+                }, 20);
+
+                // ==============================================================
+                // CHAPTER 02: SERVIÇOS SOBRE O VÍDEO (30% -> 65%)
+                // ==============================================================
+                // O vídeo continua rodando por trás normalmente!
+                
+                // Eyebrow aparece aos 30%
+                masterTl.to("#ch2-eyebrow", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 30);
+                // H2 aparece aos 34%
+                masterTl.to("#ch2-h2", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 34);
+                // Parágrafo aparece aos 40%
+                masterTl.to("#ch2-p", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 40);
+                
+                // Itens (Cards) aparecendo de forma escalonada
+                masterTl.to("#ch2-item1", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 45);
+                masterTl.to("#ch2-item2", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 49);
+                masterTl.to("#ch2-item3", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 53);
+
+                // Desaparecimento de todo o Chapter 02 (entre 60% e 70%)
+                masterTl.to("#chapter-02", {
+                    opacity: 0,
+                    y: -20,
+                    ease: "power2.inOut",
+                    duration: 10,
+                    onStart: () => document.getElementById("chapter-02").style.pointerEvents = 'none',
+                    onReverseComplete: () => document.getElementById("chapter-02").style.pointerEvents = 'auto'
+                }, 60);
+
+                // ==============================================================
+                // ESPAÇO PARA CHAPTER 03... (70% a 100%)
+                // ==============================================================
+                // Quando novos chapters forem adicionados, suas entradas
+                // e saídas podem ser mapeadas entre 70 e 100 no masterTl.
             };
 
-            // Tenta forçar o buffer do primeiro frame
-            video.currentTime = 0.01;
+            // Setup inicial das propriedades de entrada (y) do chapter 2 para a animação vir de baixo
+            gsap.set(["#ch2-eyebrow", "#ch2-h2", "#ch2-p", "#ch2-item1", "#ch2-item2", "#ch2-item3"], {
+                y: 30
+            });
 
+            // Forçar o carregamento
+            video.currentTime = 0.01;
             if (video.readyState >= 1) { 
                 initAnimations();
             } else {
                 video.addEventListener('loadedmetadata', initAnimations, { once: true });
-                // Fallback de segurança infalível: se o evento falhar, inicializa em 1.5s
-                setTimeout(initAnimations, 1500);
+                setTimeout(initAnimations, 1500); // Fallback
             }
         });
     </script>
