@@ -106,50 +106,14 @@
                     </section>
 
                     <!-- CHAPTER 02: ABOUT -->
-                    <section id="about" class="absolute inset-0 flex flex-col justify-center text-white opacity-0 pointer-events-none" style="transform: translateY(40px) scale(0.985);">
-                        
-                        <!-- OVERLAY DE LEGIBILIDADE (Apenas atrás do texto na esquerda) -->
-                        <div class="absolute inset-y-0 left-0 w-full md:w-[65%] bg-gradient-to-r from-white/60 via-white/20 to-transparent pointer-events-none z-[1] hidden md:block mix-blend-overlay"></div>
-                        <div class="absolute inset-y-0 left-0 w-full md:w-[50%] bg-gradient-to-r from-white/40 to-transparent pointer-events-none z-[1] hidden md:block"></div>
-
-                        <!-- ACESSIBILIDADE (Semantic Screen Readers) -->
-                        <div class="sr-only">
-                            <h2>Carol Pacheco Arquitetura</h2>
-                            <p>Projetos que traduzem sua essência em cada detalhe.</p>
-                            <ul>
-                                <li>Arquitetura de interiores: Ambientes funcionais, estéticos e personalizados.</li>
-                                <li>Residencial: Soluções completas para transformar casas em lares.</li>
-                                <li>Comercial: Projetos que fortalecem marcas e elevam experiências.</li>
-                                <li>Acompanhamento completo: Do conceito à execução, com atenção a cada etapa.</li>
-                            </ul>
-                            <p>Design que acolhe. Arquitetura que inspira.</p>
+                    <section id="about" class="absolute inset-0 flex flex-col justify-center px-6 md:px-16 lg:px-[10%] text-center text-white opacity-0 pointer-events-none" style="transform: translateY(15px);">
+                        <div class="max-w-[1400px] mx-auto w-full">
+                            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#D1A77D] mb-6">Sobre Carol</p>
+                            <h2 class="font-serif text-4xl md:text-6xl mb-8">Arquitetura com Propósito</h2>
+                            <p class="text-lg text-white/80 font-light max-w-2xl mx-auto leading-relaxed">
+                                Acredito que os espaços moldam nossas emoções e nossa rotina. Minha missão é traduzir a sua identidade visual e funcional em ambientes atemporais e sofisticados.
+                            </p>
                         </div>
-
-                        <!-- ARTE EDITORIAL COMPLETA (Desktop/Tablet) -->
-                        <div class="relative z-[2] w-full h-full flex items-center justify-center px-6 md:px-16 lg:px-[8%] pointer-events-none hidden md:flex">
-                            <!-- object-contain garante que a Carol não seja cortada e a proporção seja mantida -->
-                            <img 
-                                class="w-full h-auto max-h-[85vh] max-w-[1600px] object-contain" 
-                                src="./about-artwork.png" 
-                                alt=""
-                            />
-                        </div>
-
-                        <!-- ESTRUTURA MOBILE (Fallback para telas pequenas) -->
-                        <div class="md:hidden relative z-[2] flex flex-col w-full h-full justify-center px-6 pointer-events-auto bg-black/40">
-                            <div class="text-center text-white mb-8 mt-12">
-                                <p class="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#D1A77D] mb-4">Carol Pacheco</p>
-                                <h2 class="font-serif text-3xl mb-4">Projetos que traduzem sua essência.</h2>
-                                <p class="text-sm text-white/80 font-light leading-relaxed">
-                                    Residencial • Interiores • Comercial
-                                </p>
-                            </div>
-                            <!-- Mostra a imagem com object-cover focando na Carol (lado direito) -->
-                            <div class="w-full flex justify-center overflow-hidden h-[45vh]">
-                                <img src="./about-artwork.png" alt="" class="w-[200%] max-w-none object-cover object-right" />
-                            </div>
-                        </div>
-
                     </section>
 
                     <!-- CHAPTER 03: SERVIÇOS -->
@@ -293,32 +257,20 @@
                 }, 25);
 
                 // ABOUT ENTRA: 32% a 42%
-                masterTl.fromTo("#about", 
-                    { opacity: 0, y: 40, scale: 0.985 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        ease: "power2.out",
-                        duration: 10,
-                        onStart: () => document.getElementById("about").style.pointerEvents = 'auto',
-                        onReverseComplete: () => document.getElementById("about").style.pointerEvents = 'none'
-                    }, 32
-                );
-
-                // ABOUT MOVIMENTO SUTIL DURANTE A PERMANÊNCIA: 42% a 55%
+                // Sobrepõe levemente a saída do Hero para continuidade narrativa
                 masterTl.to("#about", {
-                    y: -10,
-                    scale: 1.01,
-                    ease: "none",
-                    duration: 13
-                }, 42);
+                    opacity: 1,
+                    y: 0,
+                    ease: "power2.out",
+                    duration: 10,
+                    onStart: () => document.getElementById("about").style.pointerEvents = 'auto',
+                    onReverseComplete: () => document.getElementById("about").style.pointerEvents = 'none'
+                }, 32);
 
-                // ABOUT SAI: 55% a 65% (Antes da Services entrar)
+                // ABOUT SAI: 55% a 65%
                 masterTl.to("#about", {
                     opacity: 0,
                     y: -40,
-                    scale: 0.99,
                     ease: "power2.inOut",
                     duration: 10,
                     onStart: () => document.getElementById("about").style.pointerEvents = 'none',
