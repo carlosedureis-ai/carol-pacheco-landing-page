@@ -113,7 +113,10 @@
                                 </p>
                             </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-y-0 md:gap-x-12 relative border-t border-white/10 pt-12">
+                            <!-- LINHA SEPARADORA ANIMADA -->
+                            <div id="ch2-line" class="w-full h-px bg-white/10 mb-12 origin-left opacity-0" style="transform: scaleX(0);"></div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-y-0 md:gap-x-12 relative">
                                 <!-- Item 1 -->
                                 <div id="ch2-item1" class="group relative opacity-0">
                                     <div class="flex justify-between items-start mb-8 md:mb-16">
@@ -242,6 +245,8 @@
                 masterTl.to("#ch2-h2", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 34);
                 // Parágrafo aparece aos 40%
                 masterTl.to("#ch2-p", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 40);
+                // Linha animada aparece (crescendo e surgindo) aos 42%
+                masterTl.to("#ch2-line", { opacity: 1, scaleX: 1, duration: 4, ease: "power2.out" }, 42);
                 
                 // Itens (Cards) aparecendo de forma escalonada
                 masterTl.to("#ch2-item1", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 45);
