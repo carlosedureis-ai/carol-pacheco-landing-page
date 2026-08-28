@@ -151,14 +151,48 @@
             </div>
         </div>
         
-        <!-- PÓS-EXPERIÊNCIA (O resto do site continua naturalmente daqui) -->
-        <div class="normal-page-content relative z-20 bg-[var(--bg-sand)] text-[var(--text-dark)] min-h-screen pt-32 pb-32">
+        <!-- PÓS-EXPERIÊNCIA HERO/SERVICES -->
+        <!-- ABOUT EXPERIENCE (Novo passeio cinematográfico da seção Sobre) -->
+        <!-- Usaremos 300vh para permitir um tempo de scroll confortável para a animação do vídeo -->
+        <section id="about-experience" class="relative w-full h-[300vh] bg-black z-20">
+            
+            <div id="about-video-stage" class="sticky top-0 w-full h-[100svh] overflow-hidden z-20">
+                
+                <!-- LAYER 1: VÍDEO (z-index 1) -->
+                <div class="absolute inset-0 w-full h-full z-[1]">
+                    <video 
+                        id="about-scroll-video"
+                        class="w-full h-full object-cover"
+                        muted 
+                        playsinline
+                        preload="auto">
+                        <source src="./about-bg-optimized.mp4" type="video/mp4">
+                    </video>
+                </div>
+                
+                <!-- LAYER 2: OVERLAY SUTIL (z-index 2) -->
+                <div class="absolute inset-0 bg-black/40 z-[2] pointer-events-none"></div>
+
+                <!-- LAYER 3: CONTEÚDO ORIGINAL DA ABOUT (z-index 3) -->
+                <div class="absolute inset-0 z-[3] flex flex-col justify-center px-6 md:px-16 lg:px-[10%] text-center text-white pointer-events-auto">
+                    <div class="max-w-[1400px] mx-auto w-full">
+                        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#D1A77D] mb-6">Sobre Carol</p>
+                        <h2 class="font-serif text-4xl md:text-6xl mb-8">Arquitetura com Propósito</h2>
+                        <p class="text-lg text-white/80 font-light max-w-2xl mx-auto leading-relaxed">
+                            Acredito que os espaços moldam nossas emoções e nossa rotina. Minha missão é traduzir a sua identidade visual e funcional em ambientes atemporais e sofisticados.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- RESTANTE DO SITE -->
+        <div class="relative z-30 bg-[var(--bg-sand)] text-[var(--text-dark)] min-h-screen pt-32 pb-32">
             <div class="max-w-[1400px] mx-auto px-6 md:px-16 lg:px-[10%] text-center">
-                <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#8c8273] mb-6">Fim do Passeio</p>
-                <h2 class="font-serif text-4xl md:text-6xl text-[var(--text-dark)] mb-12">Portfólio & Sobre</h2>
-                <p class="text-lg text-[var(--text-muted)] font-light max-w-2xl mx-auto">
-                    A partir deste ponto, o site retoma o formato tradicional, com seções roláveis normalmente.
-                </p>
+                <h2 class="font-serif text-4xl mb-6">Próximas Seções</h2>
+                <p>O fluxo natural continua aqui...</p>
             </div>
         </div>
 
@@ -173,6 +207,9 @@
             
             gsap.registerPlugin(ScrollTrigger);
 
+            // ==============================================================
+            // SETUP DA HERO (CASA)
+            // ==============================================================
             const video = document.getElementById("house-scroll-video");
             let isInitialized = false;
 
@@ -185,19 +222,16 @@
                     duration = 5; 
                 }
 
-                // ==============================================================
                 // TIMELINE PRINCIPAL (Mapeada 0% a 100% de .house-experience)
-                // ==============================================================
                 const masterTl = gsap.timeline({
                     scrollTrigger: {
                         trigger: "#house-experience",
                         start: "top top",
-                        end: "bottom bottom", // Acaba exatamente quando os 600vh de wrapper terminam
-                        scrub: 0.15, // Mantém a inércia fluida nativa
+                        end: "bottom bottom",
+                        scrub: 0.15,
                     }
                 });
 
-                // Define a duração base matemática de 100 para trabalharmos com % facilmente
                 masterTl.to({}, { duration: 100 });
 
                 // VÍDEO (Roda perfeitamente de 0% a 100% do wrapper)
@@ -207,23 +241,17 @@
                     duration: 100
                 }, 0);
 
-                // ==============================================================
-                // CHAPTER 01: HERO (0% -> 30%)
-                // ==============================================================
-                // Começa a sumir em 20%, totalmente invisível em 30%
+                // CHAPTER 01: HERO
                 masterTl.to("#chapter-01", {
                     opacity: 0,
                     y: -30,
                     ease: "power2.inOut",
-                    duration: 10, // de 20% a 30%
+                    duration: 10,
                     onStart: () => document.getElementById("chapter-01").style.pointerEvents = 'none',
                     onReverseComplete: () => document.getElementById("chapter-01").style.pointerEvents = 'auto'
                 }, 20);
 
-                // ==============================================================
-                // CHAPTER 02: SERVIÇOS SOBRE O VÍDEO (32% -> Permanece até 100%)
-                // ==============================================================
-                // Entra como uma peça editorial única
+                // CHAPTER 02: SERVIÇOS
                 masterTl.to("#chapter-02", {
                     opacity: 1,
                     y: 0,
@@ -232,26 +260,55 @@
                     onStart: () => document.getElementById("chapter-02").style.pointerEvents = 'auto',
                     onReverseComplete: () => document.getElementById("chapter-02").style.pointerEvents = 'none'
                 }, 32);
-
-                // O capítulo de Serviços permanecerá visível até o final da timeline
-                // Quando adicionarmos o Chapter 03, incluiremos a saída de Serviços aqui!
-
-                // ==============================================================
-                // ESPAÇO PARA CHAPTER 03... (70% a 100%)
-                // ==============================================================
-                // Quando novos chapters forem adicionados, suas entradas
-                // e saídas podem ser mapeadas entre 70 e 100 no masterTl.
             };
 
-
-
-            // Forçar o carregamento
             video.currentTime = 0.01;
             if (video.readyState >= 1) { 
                 initAnimations();
             } else {
                 video.addEventListener('loadedmetadata', initAnimations, { once: true });
                 setTimeout(initAnimations, 1500); // Fallback
+            }
+
+            // ==============================================================
+            // SETUP DA ABOUT (CÓPIA ISOLADA DA ARQUITETURA DO VÍDEO)
+            // ==============================================================
+            const aboutVideo = document.getElementById("about-scroll-video");
+            let isAboutInitialized = false;
+
+            const initAboutAnimations = () => {
+                if (isAboutInitialized) return;
+                isAboutInitialized = true;
+
+                let aboutDuration = aboutVideo.duration;
+                if (!aboutDuration || !isFinite(aboutDuration)) {
+                    aboutDuration = 5; 
+                }
+
+                const aboutTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: "#about-experience",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 0.15,
+                    }
+                });
+
+                aboutTl.to({}, { duration: 100 });
+
+                aboutTl.to(aboutVideo, {
+                    currentTime: aboutDuration - 0.1, 
+                    ease: "none",
+                    duration: 100
+                }, 0);
+            };
+
+            aboutVideo.currentTime = 0.01;
+            if (aboutVideo.readyState >= 1) { 
+                initAboutAnimations();
+            } else {
+                aboutVideo.addEventListener('loadedmetadata', initAboutAnimations, { once: true });
+                setTimeout(initAboutAnimations, 1500); // Fallback
             }
         });
     </script>
