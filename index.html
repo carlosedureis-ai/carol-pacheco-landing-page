@@ -32,8 +32,8 @@
         <!-- Altura de 900vh para comportar as 3 seções fluidamente -->
         <div id="cinematic-experience" class="relative w-full h-[900vh] bg-black">
             
-            <!-- SHARED STICKY STAGE -->
-            <div id="shared-sticky-stage" class="sticky top-0 w-full h-[100svh] overflow-hidden z-10">
+            <!-- SHARED STICKY STAGE (h-screen fallback seguro para iOS Safari < 15.4) -->
+            <div id="shared-sticky-stage" class="sticky top-0 w-full h-screen h-[100dvh] overflow-hidden z-10">
                 
                 <!-- BACKGROUND VIDEOS (z-index 1) -->
                 <!-- Vídeo da Hero -->
@@ -312,34 +312,24 @@
                 }, 62);
             };
 
-            // ESTRATÉGIA AGRESSIVA DE CARREGAMENTO PARA MOBILE (iOS SAFARI)
-            const forceVideoLoad = (videoEl) => {
-                return new Promise((resolve) => {
-                    if (videoEl.readyState >= 1) return resolve();
-                    
-                    videoEl.addEventListener('loadedmetadata', resolve, { once: true });
-                    videoEl.load();
-                    
-                    // Safari no Low Power Mode precisa de interação. Se após 1.5s não carregar, resolvemos com fallback de tempo
-                    setTimeout(resolve, 1500); 
-                });
-            };
+            // INICIALIZAÇÃO IMEDIATA E SÍNCRONA
+            // Cria a timeline instantaneamente para não quebrar o layout/scroll no mobile,
+            // mesmo se os vídeos demorarem para carregar o metadata no iOS.
+            initAnimations();
 
-            Promise.all([forceVideoLoad(heroVideo), forceVideoLoad(flowVideo)]).then(() => {
-                initAnimations();
-            });
+            // ESTRATÉGIA AGRESSIVA DE CARREGAMENTO PARA MOBILE (iOS SAFARI)
+            // Tenta forçar o pre-load silencioso no background
+            if (heroVideo.readyState < 1) heroVideo.load();
+            if (flowVideo.readyState < 1) flowVideo.load();
 
             // Destrava vídeos em dispositivos móveis no primeiro toque
             const unlockVideosOnInteraction = () => {
                 if (heroVideo.readyState < 1) heroVideo.load();
                 if (flowVideo.readyState < 1) flowVideo.load();
                 
-                // Força GSAP a recalcular se os vídeos carregaram depois via toque
-                if (isInitialized) {
-                    ScrollTrigger.refresh();
-                } else {
-                    initAnimations();
-                }
+                // Força GSAP a recalcular as posições caso algo tenha mudado
+                ScrollTrigger.refresh();
+                
                 document.removeEventListener('touchstart', unlockVideosOnInteraction);
             };
             document.addEventListener('touchstart', unlockVideosOnInteraction, { passive: true });
