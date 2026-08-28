@@ -255,30 +255,25 @@
                     duration = 5; 
                 }
 
-                const videoState = { time: 0.01 };
-
+                // Usar o próprio elemento de vídeo diretamente no GSAP é a forma mais performática
+                // O GSAP tem otimizações internas profundas para a propriedade 'currentTime'
                 const heroTl = gsap.timeline({
                     scrollTrigger: {
                         trigger: "#hero-scroll-wrapper",
                         start: "top top",
                         end: "bottom bottom",
-                        scrub: 1, // Inertia cinematográfica suave de 1 segundo
+                        scrub: 0.15, // Restaura o scrub para 0.15 para fluidez sem atraso exagerado
                     }
                 });
 
-                // Duração base de 100 para criar a porcentagem
+                // Duração base de 100 para criar a porcentagem perfeita
                 heroTl.to({}, { duration: 100 });
 
-                // VÍDEO: Corre do início ao fim durante os 100% de scroll
-                heroTl.to(videoState, {
-                    time: duration - 0.1, 
+                // VÍDEO: Corre do início ao fim durante os 100% de scroll, sem proxy intermediário
+                heroTl.to(video, {
+                    currentTime: duration - 0.1, 
                     ease: "none",
-                    duration: 100,
-                    onUpdate: () => {
-                        try { 
-                            video.currentTime = videoState.time; 
-                        } catch (e) {}
-                    }
+                    duration: 100
                 }, 0);
 
                 // TEXTO: Desaparece entre 70% e 85% do trajeto
