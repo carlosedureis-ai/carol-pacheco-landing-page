@@ -235,33 +235,26 @@
                 }, 20);
 
                 // ==============================================================
-                // CHAPTER 02: SERVIÇOS SOBRE O VÍDEO (30% -> 65%)
+                // CHAPTER 02: SERVIÇOS SOBRE O VÍDEO (32% -> Permanece até 100%)
                 // ==============================================================
                 // O vídeo continua rodando por trás normalmente!
                 
-                // Eyebrow aparece aos 30%
-                masterTl.to("#ch2-eyebrow", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 30);
-                // H2 aparece aos 34%
-                masterTl.to("#ch2-h2", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 34);
-                // Parágrafo aparece aos 40%
-                masterTl.to("#ch2-p", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 40);
-                // Linha animada aparece (crescendo e surgindo) aos 42%
-                masterTl.to("#ch2-line", { opacity: 1, scaleX: 1, duration: 4, ease: "power2.out" }, 42);
+                // Eyebrow aparece aos 32%
+                masterTl.to("#ch2-eyebrow", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 32);
+                // H2 aparece aos 35%
+                masterTl.to("#ch2-h2", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 35);
+                // Parágrafo aparece aos 39%
+                masterTl.to("#ch2-p", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 39);
+                // Linha animada aparece (crescendo e surgindo) aos 41%
+                masterTl.to("#ch2-line", { opacity: 1, scaleX: 1, duration: 4, ease: "power2.out" }, 41);
                 
                 // Itens (Cards) aparecendo de forma escalonada
-                masterTl.to("#ch2-item1", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 45);
-                masterTl.to("#ch2-item2", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 49);
-                masterTl.to("#ch2-item3", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 53);
+                masterTl.to("#ch2-item1", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 43);
+                masterTl.to("#ch2-item2", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 46);
+                masterTl.to("#ch2-item3", { opacity: 1, y: 0, duration: 4, ease: "power1.out" }, 49);
 
-                // Desaparecimento de todo o Chapter 02 (entre 60% e 70%)
-                masterTl.to("#chapter-02", {
-                    opacity: 0,
-                    y: -20,
-                    ease: "power2.inOut",
-                    duration: 10,
-                    onStart: () => document.getElementById("chapter-02").style.pointerEvents = 'none',
-                    onReverseComplete: () => document.getElementById("chapter-02").style.pointerEvents = 'auto'
-                }, 60);
+                // O capítulo de Serviços permanecerá visível até o final da timeline
+                // Quando adicionarmos o Chapter 03, incluiremos a saída de Serviços aqui!
 
                 // ==============================================================
                 // ESPAÇO PARA CHAPTER 03... (70% a 100%)
