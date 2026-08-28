@@ -228,57 +228,41 @@
             const initAnimations = () => {
                 if (isInitialized) return;
                 
-                // Garantir que ambos os vídeos tenham metadata, se não fallback para 5s
-                let heroDuration = heroVideo.duration;
-                if (!heroDuration || !isFinite(heroDuration)) heroDuration = 5; 
-                
-                let flowDuration = flowVideo.duration;
-                if (!flowDuration || !isFinite(flowDuration)) flowDuration = 5; 
+                // Fallbacks robustos para Mobile Safari
+                let heroDuration = (heroVideo.duration && isFinite(heroVideo.duration)) ? heroVideo.duration : 10; 
+                let flowDuration = (flowVideo.duration && isFinite(flowVideo.duration)) ? flowVideo.duration : 10; 
 
                 isInitialized = true;
 
-                // TIMELINE GLOBAL UNIFICADA (Mapeada 0% a 100% de .cinematic-experience)
+                // TIMELINE GLOBAL UNIFICADA
                 const masterTl = gsap.timeline({
                     scrollTrigger: {
                         trigger: "#cinematic-experience",
                         start: "top top",
                         end: "bottom bottom",
-                        scrub: 0.15, // Smoothing nativo do scrub mantido
+                        scrub: 0.15,
                     }
                 });
 
-                // Duração matemática base de 100
                 masterTl.to({}, { duration: 100 });
 
-                // ==============================================================
                 // 1. COMPORTAMENTO DOS VÍDEOS (BACKGROUND)
-                // ==============================================================
-                
-                // HERO VIDEO SCRUB: 0% a 45% da timeline global
                 masterTl.to(heroVideo, {
                     currentTime: heroDuration - 0.1,
                     ease: "none",
                     duration: 45
                 }, 0);
 
-                // CROSSFADE ENTRE VÍDEOS: 38% a 43%
                 masterTl.to(flowVideo, { opacity: 1, ease: "none", duration: 5 }, 38);
                 masterTl.to(heroVideo, { opacity: 0, ease: "none", duration: 5 }, 38);
 
-                // FLOW VIDEO SCRUB: 40% a 95% da timeline global
-                // Começa o scrub sutilmente um pouco antes do crossfade terminar, 
-                // para que já tenha inércia visual.
                 masterTl.to(flowVideo, {
                     currentTime: flowDuration - 0.1,
-                    ease: "power1.out", // Suaviza a câmera no final do percurso (Services)
+                    ease: "power1.out", 
                     duration: 55
                 }, 40);
 
-                // ==============================================================
                 // 2. COMPORTAMENTO DOS CONTEÚDOS (CAPÍTULOS)
-                // ==============================================================
-
-                // HERO SAI: 25% a 35%
                 masterTl.to("#hero", {
                     opacity: 0,
                     y: -40,
@@ -288,7 +272,6 @@
                     onReverseComplete: () => document.getElementById("hero").style.pointerEvents = 'auto'
                 }, 25);
 
-                // ABOUT ENTRA: 32% a 42%
                 masterTl.fromTo("#about", 
                     { opacity: 0, y: 40, scale: 0.985 },
                     {
@@ -302,7 +285,6 @@
                     }, 32
                 );
 
-                // ABOUT MOVIMENTO SUTIL DURANTE A PERMANÊNCIA: 42% a 55%
                 masterTl.to("#about", {
                     y: -10,
                     scale: 1.01,
@@ -310,7 +292,6 @@
                     duration: 13
                 }, 42);
 
-                // ABOUT SAI: 55% a 65% (Antes da Services entrar)
                 masterTl.to("#about", {
                     opacity: 0,
                     y: -40,
@@ -321,8 +302,6 @@
                     onReverseComplete: () => document.getElementById("about").style.pointerEvents = 'auto'
                 }, 55);
 
-                // SERVICES ENTRA: 62% a 72%
-                // Services acompanha o flow video e permanece até o fim da timeline
                 masterTl.to("#services", {
                     opacity: 1,
                     y: 0,
@@ -333,23 +312,37 @@
                 }, 62);
             };
 
-            // Forçar o carregamento de ambos os vídeos
-            heroVideo.currentTime = 0.01;
-            flowVideo.currentTime = 0.01;
-
-            const checkVideosLoaded = () => {
-                if (heroVideo.readyState >= 1 && flowVideo.readyState >= 1) {
-                    initAnimations();
-                }
+            // ESTRATÉGIA AGRESSIVA DE CARREGAMENTO PARA MOBILE (iOS SAFARI)
+            const forceVideoLoad = (videoEl) => {
+                return new Promise((resolve) => {
+                    if (videoEl.readyState >= 1) return resolve();
+                    
+                    videoEl.addEventListener('loadedmetadata', resolve, { once: true });
+                    videoEl.load();
+                    
+                    // Safari no Low Power Mode precisa de interação. Se após 1.5s não carregar, resolvemos com fallback de tempo
+                    setTimeout(resolve, 1500); 
+                });
             };
 
-            if (heroVideo.readyState >= 1 && flowVideo.readyState >= 1) { 
+            Promise.all([forceVideoLoad(heroVideo), forceVideoLoad(flowVideo)]).then(() => {
                 initAnimations();
-            } else {
-                heroVideo.addEventListener('loadedmetadata', checkVideosLoaded);
-                flowVideo.addEventListener('loadedmetadata', checkVideosLoaded);
-                setTimeout(initAnimations, 1500); // Fallback caso os eventos falhem
-            }
+            });
+
+            // Destrava vídeos em dispositivos móveis no primeiro toque
+            const unlockVideosOnInteraction = () => {
+                if (heroVideo.readyState < 1) heroVideo.load();
+                if (flowVideo.readyState < 1) flowVideo.load();
+                
+                // Força GSAP a recalcular se os vídeos carregaram depois via toque
+                if (isInitialized) {
+                    ScrollTrigger.refresh();
+                } else {
+                    initAnimations();
+                }
+                document.removeEventListener('touchstart', unlockVideosOnInteraction);
+            };
+            document.addEventListener('touchstart', unlockVideosOnInteraction, { passive: true });
         });
     </script>
 </body>
