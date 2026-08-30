@@ -706,6 +706,22 @@
                     duration: 13
                 }, 42);
 
+                // NO MOBILE: Scroll nativo simulado durante a permanência se o conteúdo for maior que a tela
+                masterTl.to(".about-mobile", {
+                    y: () => {
+                        const el = document.querySelector('.about-mobile');
+                        if (el && window.innerWidth <= 767) {
+                            const overflow = el.scrollHeight - window.innerHeight;
+                            // Se o conteúdo exceder a tela, transladar para cima
+                            // Adicionando uma margem de segurança de 40px para garantir que o último item seja visto
+                            return overflow > 0 ? -(overflow + 40) : 0;
+                        }
+                        return 0;
+                    },
+                    ease: "none",
+                    duration: 13
+                }, 42);
+
                 // ABOUT SAI: 55% a 65% (Iniciando a saída suave)
                 masterTl.to("#about", {
                     opacity: 0,
