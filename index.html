@@ -828,69 +828,55 @@
                 masterTl.from(".about-mobile-service", { opacity: 0, y: 10, duration: 4, stagger: 0.06, ease: "power2.out" }, 35);
 
                 // ==============================================================
-                // ABOUT - MOVIMENTO DE PERMANÊNCIA E SAÍDA (Separados por dispositivo)
+                // ABOUT - PERMANÊNCIA (Separada por dispositivo)
                 // ==============================================================
-                const mm = gsap.matchMedia();
+                const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
-                mm.add("(min-width: 768px)", () => {
-                    // DESKTOP: Movimento sutil estrutural
+                if (!isMobile) {
+                    // DESKTOP: Movimento sutil estrutural durante permanência
                     masterTl.to("#about", {
                         y: -5,
                         scale: 1.005,
                         ease: "none",
                         duration: 13
                     }, 42);
+                }
 
-                    // DESKTOP: About Sai (55% a 65%)
-                    masterTl.to("#about", {
-                        opacity: 0,
-                        y: -15,
-                        scale: 0.99,
-                        ease: "power2.inOut",
-                        duration: 10,
-                        onStart: () => {
-                            const el = document.getElementById("about");
-                            if (el) el.style.pointerEvents = 'none';
-                        },
-                        onReverseComplete: () => {
-                            const el = document.getElementById("about");
-                            if (el) el.style.pointerEvents = 'auto';
-                        }
-                    }, 55);
-                });
-
-                mm.add("(max-width: 767px)", () => {
+                if (isMobile) {
                     const mobileAbout = document.querySelector(".about-mobile");
-                    
-                    // MOBILE: Deslocamento real do conteúdo para revelar itens (40% a 53%)
-                    masterTl.to(mobileAbout, {
-                        y: () => {
-                            if (!mobileAbout) return 0;
-                            const viewportHeight = window.visualViewport?.height || window.innerHeight;
-                            const overflow = mobileAbout.scrollHeight - viewportHeight;
-                            return -Math.max(0, overflow + 24);
-                        },
-                        ease: "none",
-                        duration: 13
-                    }, 40);
+                    // MOBILE: Deslocamento real do conteúdo para revelar itens abaixo da viewport
+                    if (mobileAbout) {
+                        masterTl.to(mobileAbout, {
+                            y: () => {
+                                const viewportHeight = window.visualViewport?.height || window.innerHeight;
+                                const overflow = mobileAbout.scrollHeight - viewportHeight;
+                                return -Math.max(0, overflow + 24);
+                            },
+                            ease: "none",
+                            duration: 13
+                        }, 40);
+                    }
+                }
 
-                    // MOBILE: Permanência de leitura de 53% a 56%, depois About Sai (56% a 66%)
-                    masterTl.to("#about", {
-                        opacity: 0,
-                        y: -15,
-                        scale: 0.99,
-                        ease: "power2.inOut",
-                        duration: 10,
-                        onStart: () => {
-                            const el = document.getElementById("about");
-                            if (el) el.style.pointerEvents = 'none';
-                        },
-                        onReverseComplete: () => {
-                            const el = document.getElementById("about");
-                            if (el) el.style.pointerEvents = 'auto';
-                        }
-                    }, 56);
-                });
+                // ABOUT SAI (Sempre, em ambos dispositivos)
+                // Mobile: inicia em 56 (após scroll do conteúdo)
+                // Desktop: inicia em 55
+                const aboutExitTime = isMobile ? 56 : 55;
+                masterTl.to("#about", {
+                    opacity: 0,
+                    y: -15,
+                    scale: 0.99,
+                    ease: "power2.inOut",
+                    duration: 10,
+                    onStart: () => {
+                        const el = document.getElementById("about");
+                        if (el) el.style.pointerEvents = 'none';
+                    },
+                    onReverseComplete: () => {
+                        const el = document.getElementById("about");
+                        if (el) el.style.pointerEvents = 'auto';
+                    }
+                }, aboutExitTime);
 
                 // ==============================================================
                 // SERVICES ENTRA: 58% a 68% (Sobreposição sutil com a saída do About)
