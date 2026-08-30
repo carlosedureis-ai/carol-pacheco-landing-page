@@ -111,74 +111,61 @@
                     <!-- GSAP removerá o opacity-0 inicial via animação. Usaremos visibilidade base para SEO. -->
                     <style>
                         :root {
-                            --header-safe-area: clamp(72px, 9vh, 110px);
-                            --section-bottom-safe: clamp(32px, 5vh, 72px);
+                            --header-safe-area: clamp(64px, 8.5vh, 96px);
+                            --section-bottom-safe: clamp(16px, 2.5vh, 32px);
                         }
                         #about {
-                            overflow: hidden;
+                            overflow: visible;
                         }
                         .about-safe-container {
                             position: absolute;
-                            height: calc(100dvh - var(--header-safe-area) - var(--section-bottom-safe));
-                            top: var(--header-safe-area);
-                            left: 0;
-                            right: 0;
-                            max-height: 900px;
-                            width: min(92vw, 1500px);
+                            inset: 0;
+                            padding-top: var(--header-safe-area);
+                            padding-bottom: var(--section-bottom-safe);
+                            padding-left: clamp(20px, 4vw, 64px);
+                            padding-right: clamp(20px, 4vw, 64px);
+                            width: 100%;
+                            max-width: 1440px;
                             margin: 0 auto;
-                            overflow: hidden;
-                        }
-                        @media (min-width: 1024px) {
-                            .about-service p {
-                                padding-bottom: 16px !important;
-                            }
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            box-sizing: border-box;
                         }
 
                         /* EDITORIAL GRID HOVER EFFECTS (Desktop) */
                         @media (min-width: 768px) {
                             .about-feature {
-                                transition: background 0.4s ease;
+                                transition: background 0.3s ease;
                                 background: transparent;
                             }
                             .about-feature:hover {
-                                background: rgba(241,236,229,.025);
+                                background: rgba(241,236,229,.03);
                             }
                             .about-feature-icon {
-                                transition: transform 0.4s ease;
+                                transition: transform 0.3s ease;
                             }
                             .about-feature:hover .about-feature-icon {
-                                transform: translateY(-3px);
+                                transform: translateY(-2px);
                             }
                             .about-feature-title {
-                                transition: color 0.4s ease;
+                                transition: color 0.3s ease;
                             }
                             .about-feature:hover .about-feature-title {
                                 color: #F1ECE5 !important;
                             }
                             .about-feature-line {
-                                transition: width 0.4s ease;
+                                transition: width 0.3s ease;
                             }
                             .about-feature:hover .about-feature-line {
-                                width: 48px !important;
+                                width: 36px !important;
                             }
                             .about-feature-description {
-                                transition: opacity 0.4s ease;
-                                opacity: 0.88;
+                                transition: opacity 0.3s ease;
+                                opacity: 0.85;
                             }
                             .about-feature:hover .about-feature-description {
                                 opacity: 1;
-                            }
-                        }
-                        @media (max-height: 760px) {
-                            .about-carol {
-                                height: clamp(360px, 54vh, 580px) !important;
-                            }
-                            .about-title-line {
-                                font-size: clamp(2.5rem, 4vw, 4.4rem) !important;
-                            }
-                            .about-bottom-band {
-                                padding-top: 16px !important;
-                                padding-bottom: 16px !important;
                             }
                         }
                         @media (max-width: 767px) {
@@ -191,61 +178,60 @@
                             .about-mobile-title { font-size: clamp(2.35rem, 11vw, 2.55rem) !important; }
                             .about-mobile-carol { width: 220px !important; }
                             .about-mobile-service { 
-                                grid-template-columns: 44px minmax(0,1fr) 20px !important; 
                                 padding: 15px 0 !important; 
                             }
                             .about-mobile-service-title { font-size: clamp(1.2rem, 5.7vw, 1.35rem) !important; }
                             .about-mobile-service p { font-size: 12.5px !important; }
                         }
                     </style>
-                    <section id="about" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none" style="background: transparent !important; z-index: 4;">
+                    <section id="about" class="absolute inset-0 flex flex-col items-center justify-start pointer-events-none" style="background: transparent !important; z-index: 4;">
                         
                         <!-- GRADIENTE DE LEGIBILIDADE (Apenas esquerdo, sutil, exigido no desktop) -->
                         <div class="absolute inset-y-0 left-0 w-full md:w-[60%] pointer-events-none z-[1] hidden md:block" style="background: linear-gradient(90deg, rgba(10,8,6,0.52) 0%, rgba(10,8,6,0.27) 42%, rgba(10,8,6,0) 72%);"></div>
 
                         <!-- WRAPPER DESKTOP (>767px) -->
-                        <div class="about-safe-container z-[2] hidden md:flex flex-col justify-end pointer-events-none pb-4 lg:pb-8">
+                        <div class="about-safe-container z-[2] hidden md:flex flex-col justify-between pointer-events-none">
                             
                             <!-- ÁREA SUPERIOR: Headline + Carol -->
-                            <div class="flex-1 w-full grid relative min-h-0 items-end" style="grid-template-columns: minmax(0, .95fr) minmax(320px, .75fr); gap: clamp(24px, 4vw, 72px);">
+                            <div class="flex-1 w-full grid relative min-h-0 items-end" style="grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr); gap: clamp(20px, 3.5vw, 60px);">
                                 
-                                <!-- LEFT 45% (Editorial) -->
-                                <div class="flex flex-col justify-center h-full text-white relative z-20">
-                                    <div class="about-eyebrow flex items-center gap-4 mb-6">
+                                <!-- LEFT (Headline) -->
+                                <div class="flex flex-col justify-center h-full text-white relative z-20 pb-2">
+                                    <div class="about-eyebrow flex items-center gap-4 mb-3 lg:mb-5">
                                         <span class="uppercase tracking-[0.2em] font-semibold text-[11px] text-[var(--accent-gold)]">Sobre</span>
                                         <div class="w-8 h-[1px] bg-[var(--accent-gold)] opacity-50"></div>
                                     </div>
                                     
-                                    <h2 class="font-serif font-medium text-[#F1ECE5]" style="font-size: clamp(2.8rem, 4.4vw, 5.4rem); line-height: 0.92; text-shadow: 0 2px 18px rgba(0,0,0,0.25); max-width: 11ch;">
-                                        <div class="overflow-hidden pb-2"><div class="about-title-line">Projetos que</div></div>
-                                        <div class="overflow-hidden pb-2"><div class="about-title-line">traduzem sua</div></div>
-                                        <div class="overflow-hidden pb-2"><div class="about-title-line">essência em</div></div>
-                                        <div class="overflow-hidden pb-2"><div class="about-title-line">cada detalhe</div></div>
+                                    <h2 class="font-serif font-medium text-[#F1ECE5]" style="font-size: clamp(2.2rem, 3.8vw, 4.4rem); line-height: 0.95; text-shadow: 0 2px 18px rgba(0,0,0,0.25); max-width: 12ch;">
+                                        <div class="overflow-hidden pb-1"><div class="about-title-line">Projetos que</div></div>
+                                        <div class="overflow-hidden pb-1"><div class="about-title-line">traduzem sua</div></div>
+                                        <div class="overflow-hidden pb-1"><div class="about-title-line">essência em</div></div>
+                                        <div class="overflow-hidden pb-1"><div class="about-title-line">cada detalhe</div></div>
                                     </h2>
                                 </div>
                                 
-                                <!-- RIGHT 55% (Carol) -->
+                                <!-- RIGHT (Carol) -->
                                 <div class="h-full flex justify-center items-end relative z-10 min-h-0">
                                     <img 
                                         src="./carol-about.webp" 
                                         alt="Carol Pacheco Arquiteta" 
                                         class="about-carol relative z-10 w-auto object-contain object-bottom pointer-events-none mx-auto"
-                                        style="height: clamp(420px, 62vh, 720px); max-height: 75vh; max-width: 48vw;"
+                                        style="height: 100%; max-height: clamp(280px, 46vh, 500px); max-width: 100%;"
                                     />
                                 </div>
                             </div>
 
-                            <!-- ÁREA INFERIOR: Faixa Editorial -->
-                            <div class="about-grid-wrapper relative z-20 pointer-events-auto mt-6" style="width: min(100%, 780px);">
-                                <!-- Crosslines (Desktop/Tablet) -->
-                                <div class="about-grid-line-x absolute top-1/2 left-0 w-full h-[1px]" style="background: rgba(209,167,125,.45); transform-origin: left; transform: scaleX(0);"></div>
-                                <div class="about-grid-line-y absolute top-0 left-1/2 w-[1px] h-full" style="background: rgba(209,167,125,.45); transform-origin: top; transform: scaleY(0);"></div>
+                            <!-- ÁREA INFERIOR: Faixa Editorial (2x2 Grid) -->
+                            <div class="about-grid-wrapper relative z-20 pointer-events-auto shrink-0 w-full mx-auto mt-3 lg:mt-4" style="max-width: 860px;">
+                                <!-- Linhas Centrais Cruzadas (1px) -->
+                                <div class="about-grid-line-x absolute top-1/2 left-0 w-full h-[1px]" style="background: rgba(209,167,125,.35); transform-origin: left;"></div>
+                                <div class="about-grid-line-y absolute top-0 left-1/2 w-[1px] h-full" style="background: rgba(209,167,125,.35); transform-origin: top;"></div>
                                 
                                 <div class="grid grid-cols-2">
-                                    <!-- Pillar 1 -->
-                                    <article class="about-feature flex flex-col items-start" style="padding: clamp(24px, 3vw, 48px);">
-                                        <div class="about-feature-icon text-[#D1A77D]">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-9 h-9 md:w-[42px] md:h-[42px] mb-4" aria-hidden="true">
+                                    <!-- Pillar 01 -->
+                                    <article class="about-feature flex items-start gap-3.5" style="padding: clamp(10px, 1.5vh, 20px) clamp(14px, 1.8vw, 24px);">
+                                        <div class="about-feature-icon text-[#D1A77D] shrink-0 pt-0.5">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-6 h-6 lg:w-7 lg:h-7" aria-hidden="true">
                                                 <rect x="3" y="3" width="18" height="18" />
                                                 <line x1="3" y1="9" x2="10" y2="9" />
                                                 <line x1="10" y1="3" x2="10" y2="9" />
@@ -253,44 +239,59 @@
                                                 <line x1="14" y1="15" x2="14" y2="21" />
                                             </svg>
                                         </div>
-                                        <div class="about-feature-number font-serif text-[#D1A77D] mb-2" style="font-size: clamp(1rem, 1.2vw, 1.35rem); letter-spacing: 0.08em;">01</div>
-                                        <h3 class="about-feature-title font-serif font-medium uppercase text-[#D1A77D] leading-none mb-4" style="font-size: clamp(1.6rem, 2.1vw, 2.7rem);">Arquitetura de<br>Interiores</h3>
-                                        <div class="about-feature-line h-[1px] bg-[#D1A77D] mb-4" style="width: 24px;"></div>
-                                        <p class="about-feature-description font-sans font-normal text-[rgba(241,236,229,.88)]" style="font-size: clamp(.95rem, 1.15vw, 1.15rem); line-height: 1.55; max-width: 22ch; text-shadow: 0 2px 12px rgba(0,0,0,.35);">Ambientes funcionais,<br>estéticos e personalizados.</p>
+                                        <div class="flex flex-col">
+                                            <div class="flex items-baseline gap-2 mb-0.5">
+                                                <span class="about-feature-number font-serif text-[#D1A77D] text-xs lg:text-sm tracking-widest leading-none">01</span>
+                                                <h3 class="about-feature-title font-serif font-medium uppercase text-[#D1A77D] leading-none" style="font-size: clamp(1rem, 1.25vw, 1.35rem);">Arquitetura de Interiores</h3>
+                                            </div>
+                                            <div class="about-feature-line h-[1px] bg-[#D1A77D]/60 my-1" style="width: 20px;"></div>
+                                            <p class="about-feature-description font-sans font-normal text-[rgba(241,236,229,.85)] leading-snug" style="font-size: clamp(.75rem, .85vw, .9rem); text-shadow: 0 2px 12px rgba(0,0,0,.35);">Ambientes funcionais, estéticos e personalizados.</p>
+                                        </div>
                                     </article>
-                                    <!-- Pillar 2 -->
-                                    <article class="about-feature flex flex-col items-start" style="padding: clamp(24px, 3vw, 48px);">
-                                        <div class="about-feature-icon text-[#D1A77D]">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-9 h-9 md:w-[42px] md:h-[42px] mb-4" aria-hidden="true">
+
+                                    <!-- Pillar 02 -->
+                                    <article class="about-feature flex items-start gap-3.5" style="padding: clamp(10px, 1.5vh, 20px) clamp(14px, 1.8vw, 24px);">
+                                        <div class="about-feature-icon text-[#D1A77D] shrink-0 pt-0.5">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-6 h-6 lg:w-7 lg:h-7" aria-hidden="true">
                                                 <path d="M3 10L12 3l9 7" />
                                                 <path d="M5 10v11h14V10" />
                                                 <rect x="10" y="14" width="4" height="7" />
                                             </svg>
                                         </div>
-                                        <div class="about-feature-number font-serif text-[#D1A77D] mb-2" style="font-size: clamp(1rem, 1.2vw, 1.35rem); letter-spacing: 0.08em;">02</div>
-                                        <h3 class="about-feature-title font-serif font-medium uppercase text-[#D1A77D] leading-none mb-4" style="font-size: clamp(1.6rem, 2.1vw, 2.7rem);">Residencial</h3>
-                                        <div class="about-feature-line h-[1px] bg-[#D1A77D] mb-4" style="width: 24px;"></div>
-                                        <p class="about-feature-description font-sans font-normal text-[rgba(241,236,229,.88)]" style="font-size: clamp(.95rem, 1.15vw, 1.15rem); line-height: 1.55; max-width: 22ch; text-shadow: 0 2px 12px rgba(0,0,0,.35);">Soluções completas para<br>transformar casas em lares.</p>
+                                        <div class="flex flex-col">
+                                            <div class="flex items-baseline gap-2 mb-0.5">
+                                                <span class="about-feature-number font-serif text-[#D1A77D] text-xs lg:text-sm tracking-widest leading-none">02</span>
+                                                <h3 class="about-feature-title font-serif font-medium uppercase text-[#D1A77D] leading-none" style="font-size: clamp(1rem, 1.25vw, 1.35rem);">Residencial</h3>
+                                            </div>
+                                            <div class="about-feature-line h-[1px] bg-[#D1A77D]/60 my-1" style="width: 20px;"></div>
+                                            <p class="about-feature-description font-sans font-normal text-[rgba(241,236,229,.85)] leading-snug" style="font-size: clamp(.75rem, .85vw, .9rem); text-shadow: 0 2px 12px rgba(0,0,0,.35);">Soluções completas para transformar casas em lares.</p>
+                                        </div>
                                     </article>
-                                    <!-- Pillar 3 -->
-                                    <article class="about-feature flex flex-col items-start" style="padding: clamp(24px, 3vw, 48px);">
-                                        <div class="about-feature-icon text-[#D1A77D]">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-9 h-9 md:w-[42px] md:h-[42px] mb-4" aria-hidden="true">
+
+                                    <!-- Pillar 03 -->
+                                    <article class="about-feature flex items-start gap-3.5" style="padding: clamp(10px, 1.5vh, 20px) clamp(14px, 1.8vw, 24px);">
+                                        <div class="about-feature-icon text-[#D1A77D] shrink-0 pt-0.5">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-6 h-6 lg:w-7 lg:h-7" aria-hidden="true">
                                                 <rect x="6" y="3" width="12" height="18" />
                                                 <line x1="9" y1="7" x2="15" y2="7" />
                                                 <line x1="9" y1="11" x2="15" y2="11" />
                                                 <line x1="9" y1="15" x2="15" y2="15" />
                                             </svg>
                                         </div>
-                                        <div class="about-feature-number font-serif text-[#D1A77D] mb-2" style="font-size: clamp(1rem, 1.2vw, 1.35rem); letter-spacing: 0.08em;">03</div>
-                                        <h3 class="about-feature-title font-serif font-medium uppercase text-[#D1A77D] leading-none mb-4" style="font-size: clamp(1.6rem, 2.1vw, 2.7rem);">Comercial</h3>
-                                        <div class="about-feature-line h-[1px] bg-[#D1A77D] mb-4" style="width: 24px;"></div>
-                                        <p class="about-feature-description font-sans font-normal text-[rgba(241,236,229,.88)]" style="font-size: clamp(.95rem, 1.15vw, 1.15rem); line-height: 1.55; max-width: 22ch; text-shadow: 0 2px 12px rgba(0,0,0,.35);">Projetos que fortalecem<br>marcas e elevam experiências.</p>
+                                        <div class="flex flex-col">
+                                            <div class="flex items-baseline gap-2 mb-0.5">
+                                                <span class="about-feature-number font-serif text-[#D1A77D] text-xs lg:text-sm tracking-widest leading-none">03</span>
+                                                <h3 class="about-feature-title font-serif font-medium uppercase text-[#D1A77D] leading-none" style="font-size: clamp(1rem, 1.25vw, 1.35rem);">Comercial</h3>
+                                            </div>
+                                            <div class="about-feature-line h-[1px] bg-[#D1A77D]/60 my-1" style="width: 20px;"></div>
+                                            <p class="about-feature-description font-sans font-normal text-[rgba(241,236,229,.85)] leading-snug" style="font-size: clamp(.75rem, .85vw, .9rem); text-shadow: 0 2px 12px rgba(0,0,0,.35);">Projetos que fortalecem marcas e elevam experiências.</p>
+                                        </div>
                                     </article>
-                                    <!-- Pillar 4 -->
-                                    <article class="about-feature flex flex-col items-start" style="padding: clamp(24px, 3vw, 48px);">
-                                        <div class="about-feature-icon text-[#D1A77D]">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-9 h-9 md:w-[42px] md:h-[42px] mb-4" aria-hidden="true">
+
+                                    <!-- Pillar 04 -->
+                                    <article class="about-feature flex items-start gap-3.5" style="padding: clamp(10px, 1.5vh, 20px) clamp(14px, 1.8vw, 24px);">
+                                        <div class="about-feature-icon text-[#D1A77D] shrink-0 pt-0.5">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-6 h-6 lg:w-7 lg:h-7" aria-hidden="true">
                                                 <rect x="5" y="4" width="14" height="17" rx="1" />
                                                 <path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" />
                                                 <line x1="9" y1="10" x2="15" y2="10" />
@@ -298,10 +299,14 @@
                                                 <line x1="9" y1="18" x2="11" y2="18" />
                                             </svg>
                                         </div>
-                                        <div class="about-feature-number font-serif text-[#D1A77D] mb-2" style="font-size: clamp(1rem, 1.2vw, 1.35rem); letter-spacing: 0.08em;">04</div>
-                                        <h3 class="about-feature-title font-serif font-medium uppercase text-[#D1A77D] leading-none mb-4" style="font-size: clamp(1.6rem, 2.1vw, 2.7rem);">Acompanhamento<br>Completo</h3>
-                                        <div class="about-feature-line h-[1px] bg-[#D1A77D] mb-4" style="width: 24px;"></div>
-                                        <p class="about-feature-description font-sans font-normal text-[rgba(241,236,229,.88)]" style="font-size: clamp(.95rem, 1.15vw, 1.15rem); line-height: 1.55; max-width: 22ch; text-shadow: 0 2px 12px rgba(0,0,0,.35);">Do conceito à execução,<br>com atenção a cada etapa.</p>
+                                        <div class="flex flex-col">
+                                            <div class="flex items-baseline gap-2 mb-0.5">
+                                                <span class="about-feature-number font-serif text-[#D1A77D] text-xs lg:text-sm tracking-widest leading-none">04</span>
+                                                <h3 class="about-feature-title font-serif font-medium uppercase text-[#D1A77D] leading-none" style="font-size: clamp(1rem, 1.25vw, 1.35rem);">Acompanhamento Completo</h3>
+                                            </div>
+                                            <div class="about-feature-line h-[1px] bg-[#D1A77D]/60 my-1" style="width: 20px;"></div>
+                                            <p class="about-feature-description font-sans font-normal text-[rgba(241,236,229,.85)] leading-snug" style="font-size: clamp(.75rem, .85vw, .9rem); text-shadow: 0 2px 12px rgba(0,0,0,.35);">Do conceito à execução, com atenção a cada etapa.</p>
+                                        </div>
                                     </article>
                                 </div>
                             </div>
@@ -697,11 +702,6 @@
                 // ==============================================================
                 gsap.set(["#about", "#services"], { opacity: 0, pointerEvents: "none" });
 
-                console.log('[CP-DEBUG] initAnimations running, isMobile:', window.matchMedia("(max-width: 767px)").matches);
-                console.log('[CP-DEBUG] #about element:', document.getElementById("about"));
-                console.log('[CP-DEBUG] .about-mobile element:', document.querySelector(".about-mobile"));
-                console.log('[CP-DEBUG] .about-safe-container element:', document.querySelector(".about-safe-container"));
-
                 isInitialized = true;
 
                 // ==============================================================
@@ -764,18 +764,13 @@
                         ease: "power2.out",
                         duration: 10,
                         onStart: () => {
-                            console.log('[CP-DEBUG] About ENTERING - onStart fired');
                             document.getElementById("about").style.pointerEvents = 'auto';
                         },
                         onReverseComplete: () => {
-                            console.log('[CP-DEBUG] About ENTERING - onReverseComplete fired');
                             document.getElementById("about").style.pointerEvents = 'none';
                         }
                     }, 32
                 );
-
-                console.log('[CP-DEBUG] masterTl total duration:', masterTl.duration());
-                console.log('[CP-DEBUG] About fromTo registered at position 32');
 
                 // ANIMAÇÕES INTERNAS DA SEÇÃO ABOUT (Acompanhando o scroll suavemente)
                 // Ordem visual: eyebrow -> headline -> Carol -> grid -> pilares
@@ -917,10 +912,10 @@
                 // ==============================================================
                 // PROGRESSIVE HIGHLIGHT (SERVICES DURANTE SCROLL: 68% a 95%)
                 // ==============================================================
-                const items = document.querySelectorAll(".service-item");
-                const names = document.querySelectorAll(".service-name");
+                const items = document.querySelectorAll("#services .service-item");
+                const names = document.querySelectorAll("#services .service-name");
                 
-                if(items.length >= 3) {
+                if (items.length >= 3 && names.length >= 3) {
                     // Item 1 destaque
                     masterTl.to(items[0], { opacity: 1, borderTopColor: "rgba(209,167,125,0.4)", duration: 4, ease: "power1.inOut" }, 68);
                     masterTl.to(names[0], { color: "#D1A77D", duration: 4, ease: "power1.inOut" }, 68);
@@ -938,7 +933,6 @@
                     // Item 3 destaque
                     masterTl.to(items[2], { opacity: 1, borderTopColor: "rgba(209,167,125,0.4)", borderBottomColor: "rgba(209,167,125,0.4)", duration: 4, ease: "power1.inOut" }, 84);
                     masterTl.to(names[2], { color: "#D1A77D", duration: 4, ease: "power1.inOut" }, 84);
-                    // Deixamos o último aceso até o fim da página
                 }
             };
 
