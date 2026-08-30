@@ -312,7 +312,18 @@
 
                 isInitialized = true;
 
-                // TIMELINE GLOBAL UNIFICADA
+                // ==============================================================
+                // ANIMAÇÕES DE ENTRADA (PAGE LOAD)
+                // ==============================================================
+                const introTl = gsap.timeline();
+                introTl.from("#hero p.tracking-\\[0\\.2em\\]", { opacity: 0, y: 15, duration: 1.5, ease: "power3.out" }, 0.2);
+                introTl.from("#hero h1", { opacity: 0, y: 30, duration: 2, ease: "power3.out" }, 0.4);
+                introTl.from("#hero p.text-white\\/80", { opacity: 0, y: 15, duration: 1.5, ease: "power3.out" }, 0.8);
+                introTl.from("#hero .flex a", { opacity: 0, y: 15, duration: 1.5, stagger: 0.2, ease: "power3.out" }, 1.0);
+
+                // ==============================================================
+                // TIMELINE GLOBAL UNIFICADA (SCROLL)
+                // ==============================================================
                 const masterTl = gsap.timeline({
                     scrollTrigger: {
                         trigger: "#cinematic-experience",
