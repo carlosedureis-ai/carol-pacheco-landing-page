@@ -763,13 +763,22 @@
                         scale: 1,
                         ease: "power2.out",
                         duration: 10,
-                        onStart: () => document.getElementById("about").style.pointerEvents = 'auto',
-                        onReverseComplete: () => document.getElementById("about").style.pointerEvents = 'none'
+                        onStart: () => {
+                            console.log('[CP-DEBUG] About ENTERING - onStart fired');
+                            document.getElementById("about").style.pointerEvents = 'auto';
+                        },
+                        onReverseComplete: () => {
+                            console.log('[CP-DEBUG] About ENTERING - onReverseComplete fired');
+                            document.getElementById("about").style.pointerEvents = 'none';
+                        }
                     }, 32
                 );
 
+                console.log('[CP-DEBUG] masterTl total duration:', masterTl.duration());
+                console.log('[CP-DEBUG] About fromTo registered at position 32');
+
                 // ANIMAÇÕES INTERNAS DA SEÇÃO ABOUT (Acompanhando o scroll suavemente)
-                // Ordem visual: eyebrow -> headline -> Carol -> band line -> pilares (services)
+                // Ordem visual: eyebrow -> headline -> Carol -> grid -> pilares
                 masterTl.from(".about-eyebrow", { opacity: 0, y: 15, duration: 3, ease: "power2.out" }, 33);
                 
                 masterTl.from(".about-title-line", { 
@@ -786,13 +795,6 @@
                     scale: 0.985,
                     duration: 5, 
                     ease: "power2.out" 
-                }, 34);
-
-                masterTl.from(".about-monogram", { 
-                    opacity: 0, 
-                    scale: 0.95, 
-                    duration: 6, 
-                    ease: "power1.out" 
                 }, 34);
                 
                 // GRID EDITORIAL (Desktop/Tablet)
