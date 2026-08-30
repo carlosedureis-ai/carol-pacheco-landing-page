@@ -108,65 +108,120 @@
                     </section>
 
                     <!-- CHAPTER 02: ABOUT -->
-                    <section id="about" class="about-editorial-layer absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-0 bg-transparent" style="transform: translateY(40px) scale(0.985); background: transparent !important;">
+                    <!-- GSAP removerá o opacity-0 inicial via animação. Usaremos visibilidade base para SEO. -->
+                    <section id="about" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-0" style="background: transparent !important;">
                         
-                        <!-- ACESSIBILIDADE (Semantic Screen Readers) -->
-                        <div class="sr-only">
-                            <h2>Carol Pacheco Arquitetura</h2>
-                            <p>Projetos que traduzem sua essência em cada detalhe.</p>
-                            <ul>
-                                <li>Arquitetura de interiores: Ambientes funcionais, estéticos e personalizados.</li>
-                                <li>Residencial: Soluções completas para transformar casas em lares.</li>
-                                <li>Comercial: Projetos que fortalecem marcas e elevam experiências.</li>
-                                <li>Acompanhamento completo: Do conceito à execução, com atenção a cada etapa.</li>
-                            </ul>
-                            <p>Design que acolhe. Arquitetura que inspira.</p>
+                        <!-- GRADIENTE DE LEGIBILIDADE (Apenas esquerdo, sutil, exigido no desktop) -->
+                        <div class="absolute inset-y-0 left-0 w-full md:w-[60%] pointer-events-none z-[1] hidden md:block" style="background: linear-gradient(90deg, rgba(10,8,6,0.52) 0%, rgba(10,8,6,0.27) 42%, rgba(10,8,6,0) 72%);"></div>
+
+                        <!-- WRAPPER DESKTOP (>767px) -->
+                        <div class="relative z-[2] hidden md:flex w-[min(92vw,1600px)] h-full mx-auto items-center pointer-events-none">
+                            
+                            <!-- LEFT AREA (53%) -->
+                            <div class="w-[53%] flex flex-col justify-center text-white h-full pr-8">
+                                <!-- Eyebrow -->
+                                <div class="about-eyebrow flex items-center gap-4 mb-6">
+                                    <span class="uppercase tracking-[0.2em] font-semibold text-[11px] text-[var(--accent-gold)]">Sobre</span>
+                                    <div class="w-8 h-[1px] bg-[var(--accent-gold)] opacity-50"></div>
+                                </div>
+                                
+                                <!-- Headline -->
+                                <h2 class="font-serif leading-[0.9] font-medium text-[#F1ECE5] mb-12" style="font-size: clamp(3.4rem, 5.3vw, 6.7rem); text-shadow: 0 2px 18px rgba(0,0,0,0.25);">
+                                    <div class="overflow-hidden pb-2"><div class="about-title-line">Projetos que</div></div>
+                                    <div class="overflow-hidden pb-2"><div class="about-title-line">traduzem sua</div></div>
+                                    <div class="overflow-hidden pb-2"><div class="about-title-line">essência em</div></div>
+                                    <div class="overflow-hidden pb-2"><div class="about-title-line">cada detalhe</div></div>
+                                </h2>
+                                
+                                <!-- Divider -->
+                                <div class="about-divider w-full max-w-[80%] h-[1px] bg-[#f1ece5]/20 mb-10"></div>
+
+                                <!-- Services Grid -->
+                                <div class="grid grid-cols-2 gap-y-10 gap-x-8 max-w-[90%]">
+                                    <div class="about-service flex flex-col gap-3">
+                                        <svg class="w-5 h-5 text-[#D1A77D]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h16M9 4v16"/></svg>
+                                        <h3 class="font-sans text-[10px] font-semibold uppercase tracking-widest text-[#D1A77D]">Arquitetura de Interiores</h3>
+                                        <p class="text-[13px] text-[#F1ECE5]/75 font-light leading-relaxed pr-4">Ambientes funcionais, estéticos e personalizados.</p>
+                                    </div>
+                                    <div class="about-service flex flex-col gap-3">
+                                        <svg class="w-5 h-5 text-[#D1A77D]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 16v-6a2 2 0 012-2h12a2 2 0 012 2v6M4 16h16M6 16v2m12-2v2M8 10v2m8-2v2"/></svg>
+                                        <h3 class="font-sans text-[10px] font-semibold uppercase tracking-widest text-[#D1A77D]">Residencial</h3>
+                                        <p class="text-[13px] text-[#F1ECE5]/75 font-light leading-relaxed pr-4">Soluções completas para transformar casas em lares.</p>
+                                    </div>
+                                    <div class="about-service flex flex-col gap-3">
+                                        <svg class="w-5 h-5 text-[#D1A77D]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 21V5a2 2 0 012-2h8a2 2 0 012 2v16M6 21h12M9 7h2m2 0h2m-6 4h2m2 0h2m-6 4h2m2 0h2"/></svg>
+                                        <h3 class="font-sans text-[10px] font-semibold uppercase tracking-widest text-[#D1A77D]">Comercial</h3>
+                                        <p class="text-[13px] text-[#F1ECE5]/75 font-light leading-relaxed pr-4">Projetos que fortalecem marcas e elevam experiências.</p>
+                                    </div>
+                                    <div class="about-service flex flex-col gap-3">
+                                        <svg class="w-5 h-5 text-[#D1A77D]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                                        <h3 class="font-sans text-[10px] font-semibold uppercase tracking-widest text-[#D1A77D]">Acompanhamento Completo</h3>
+                                        <p class="text-[13px] text-[#F1ECE5]/75 font-light leading-relaxed pr-4">Do conceito à execução, com atenção a cada etapa.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- RIGHT AREA (47%) -->
+                            <div class="w-[47%] h-full relative flex justify-center items-end">
+                                <!-- Monogram -->
+                                <div class="about-monogram absolute inset-0 flex items-center justify-center opacity-5 font-serif text-[#F1ECE5] select-none pointer-events-none" style="font-size: clamp(15rem, 25vw, 35rem); line-height: 1; letter-spacing: -0.05em;">
+                                    CP
+                                </div>
+                                
+                                <!-- Carol Image -->
+                                <img 
+                                    src="./carol-about.webp" 
+                                    alt="Carol Pacheco Arquiteta" 
+                                    class="about-carol relative z-10 w-full object-contain object-bottom pointer-events-none"
+                                    style="height: clamp(82vh, 88vh, 94vh); max-height: 1100px;"
+                                />
+
+                                <!-- Vertical Side Copy -->
+                                <div class="about-side-copy absolute right-0 top-1/2 -translate-y-1/2 text-[#F1ECE5] opacity-50 text-[10px] uppercase tracking-[0.25em]" style="writing-mode: vertical-rl;">
+                                    Arquitetura que acolhe · Design que transforma
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- ARTE EDITORIAL COMPLETA (Desktop/Tablet) -->
-                        <!-- A imagem é pura, mas aplicamos um drop-shadow branco sutil para que o texto preto salte sobre fundos escuros do vídeo -->
-                        <img 
-                            class="about-editorial-image hidden md:block object-contain pointer-events-none" 
-                            style="width: min(94vw, 1700px); max-width: 100%; height: auto; background: transparent !important; border: 0; box-shadow: none; filter: drop-shadow(0px 4px 24px rgba(255,255,255,0.45));"
-                            src="./about-artwork.png" 
-                            alt=""
-                        />
-
-                        <!-- ESTRUTURA MOBILE (Fallback para telas pequenas) -->
-                        <!-- Usamos overflow-y-auto no mobile caso a tela seja muito pequena -->
-                        <div class="md:hidden relative z-[2] flex flex-col w-full h-full justify-start pt-16 px-6 pointer-events-auto bg-transparent overflow-y-auto" style="background: transparent !important;">
+                        <!-- WRAPPER MOBILE (<= 767px) -->
+                        <div class="md:hidden relative z-[2] flex flex-col w-full h-full pt-16 px-6 pointer-events-auto overflow-hidden">
                             
                             <!-- Header Text -->
-                            <div class="text-center text-white mb-6 shrink-0" style="text-shadow: 0px 4px 16px rgba(0,0,0,0.9), 0px 1px 3px rgba(0,0,0,0.8);">
-                                <h2 class="font-serif text-[1.75rem] leading-[1.1] font-medium mb-3 text-white">Projetos que traduzem<br>sua essência.</h2>
+                            <div class="about-eyebrow flex items-center justify-center gap-3 mb-2 shrink-0 mt-2">
+                                <span class="uppercase tracking-[0.2em] font-semibold text-[10px] text-[var(--accent-gold)]">Sobre</span>
                             </div>
                             
-                            <!-- Informações Completas (Não cortadas) -->
-                            <div class="flex flex-col gap-4 text-white text-left w-full max-w-sm mx-auto shrink-0 z-10" style="text-shadow: 0px 2px 10px rgba(0,0,0,0.95), 0px 1px 2px rgba(0,0,0,0.8);">
-                                <div>
-                                    <h3 class="font-bold text-[11px] tracking-widest text-[#e6c49e] uppercase mb-0.5">01 Residencial</h3>
-                                    <p class="text-[13px] text-white/95 leading-tight font-medium">Soluções completas para transformar casas em lares.</p>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-[11px] tracking-widest text-[#e6c49e] uppercase mb-0.5">02 Interiores</h3>
-                                    <p class="text-[13px] text-white/95 leading-tight font-medium">Ambientes funcionais, estéticos e personalizados.</p>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-[11px] tracking-widest text-[#e6c49e] uppercase mb-0.5">03 Comercial</h3>
-                                    <p class="text-[13px] text-white/95 leading-tight font-medium">Projetos que fortalecem marcas e elevam experiências.</p>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-[11px] tracking-widest text-[#e6c49e] uppercase mb-0.5">Acompanhamento</h3>
-                                    <p class="text-[13px] text-white/95 leading-tight font-medium">Do conceito à execução, com atenção a cada etapa.</p>
-                                </div>
+                            <h2 class="font-serif text-[2.2rem] leading-[1.05] text-center font-medium mb-4 text-[#F1ECE5] shrink-0" style="text-shadow: 0 2px 12px rgba(0,0,0,.4);">
+                                <div class="overflow-hidden pb-1"><div class="about-title-line">Projetos que traduzem</div></div>
+                                <div class="overflow-hidden pb-1"><div class="about-title-line">sua essência.</div></div>
+                            </h2>
+                            
+                            <!-- Carol Image Mobile -->
+                            <div class="w-full flex justify-center shrink-0 h-[45vh] relative -mb-4">
+                                <!-- O Monogram sutil também no mobile -->
+                                <div class="about-monogram absolute inset-0 flex items-center justify-center opacity-5 font-serif text-[#F1ECE5] select-none pointer-events-none" style="font-size: 14rem; line-height: 1; letter-spacing: -0.05em;">CP</div>
+                                <img src="./carol-about.webp" alt="Carol Pacheco" class="about-carol relative z-10 w-full h-full object-contain object-bottom" />
                             </div>
                             
-                            <!-- Apenas a Carol recortada oticamente da arte -->
-                            <!-- Posicionada no rodapé da seção, atrás do texto se a tela for muito pequena -->
-                            <div class="absolute bottom-0 left-0 w-full flex justify-end overflow-hidden h-[55vh] pointer-events-none opacity-90 z-0">
-                                <img src="./about-artwork.png" alt="" class="w-[200%] h-full max-w-none object-cover object-bottom" style="object-position: 85% 100%; background: transparent !important; filter: drop-shadow(0px -10px 20px rgba(0,0,0,0.4));" />
+                            <!-- Services Mobile -->
+                            <div class="flex flex-col w-full max-w-sm mx-auto shrink-0 pb-6 relative z-20">
+                                <div class="about-service flex flex-col gap-1.5 border-t border-[#f1ece5]/15 py-4">
+                                    <h3 class="font-sans font-semibold text-[11px] tracking-widest text-[#D1A77D] uppercase">01 Residencial</h3>
+                                    <p class="text-[13px] text-[#F1ECE5]/80 leading-snug font-light">Soluções completas para transformar casas em lares.</p>
+                                </div>
+                                <div class="about-service flex flex-col gap-1.5 border-t border-[#f1ece5]/15 py-4">
+                                    <h3 class="font-sans font-semibold text-[11px] tracking-widest text-[#D1A77D] uppercase">02 Interiores</h3>
+                                    <p class="text-[13px] text-[#F1ECE5]/80 leading-snug font-light">Ambientes funcionais, estéticos e personalizados.</p>
+                                </div>
+                                <div class="about-service flex flex-col gap-1.5 border-t border-[#f1ece5]/15 py-4">
+                                    <h3 class="font-sans font-semibold text-[11px] tracking-widest text-[#D1A77D] uppercase">03 Comercial</h3>
+                                    <p class="text-[13px] text-[#F1ECE5]/80 leading-snug font-light">Projetos que fortalecem marcas e elevam experiências.</p>
+                                </div>
+                                <div class="about-service flex flex-col gap-1.5 border-y border-[#f1ece5]/15 py-4">
+                                    <h3 class="font-sans font-semibold text-[11px] tracking-widest text-[#D1A77D] uppercase">04 Acompanhamento</h3>
+                                    <p class="text-[13px] text-[#F1ECE5]/80 leading-snug font-light">Do conceito à execução, com atenção a cada etapa.</p>
+                                </div>
                             </div>
-
                         </div>
 
                     </section>
@@ -295,6 +350,7 @@
                     onReverseComplete: () => document.getElementById("hero").style.pointerEvents = 'auto'
                 }, 25);
 
+                // ABOUT ENTRA: 32% a 42%
                 masterTl.fromTo("#about", 
                     { opacity: 0, y: 40, scale: 0.985 },
                     {
@@ -308,6 +364,55 @@
                     }, 32
                 );
 
+                // ANIMAÇÕES INTERNAS DA SEÇÃO ABOUT (Acompanhando o scroll suavemente)
+                masterTl.from(".about-eyebrow", { opacity: 0, y: 15, duration: 4, ease: "power2.out" }, 33);
+                
+                masterTl.from(".about-title-line", { 
+                    opacity: 0, 
+                    y: 35, 
+                    duration: 5, 
+                    stagger: 0.4, 
+                    ease: "power2.out" 
+                }, 33.5);
+                
+                masterTl.from(".about-divider", { 
+                    scaleX: 0, 
+                    transformOrigin: "left", 
+                    duration: 4, 
+                    ease: "power2.out" 
+                }, 34);
+                
+                masterTl.from(".about-service", { 
+                    opacity: 0, 
+                    y: 15, 
+                    duration: 4, 
+                    stagger: 0.3, 
+                    ease: "power2.out" 
+                }, 35);
+                
+                masterTl.from(".about-carol", { 
+                    opacity: 0, 
+                    x: 40, 
+                    scale: 0.98, 
+                    duration: 5, 
+                    ease: "power2.out" 
+                }, 33);
+                
+                masterTl.from(".about-monogram", { 
+                    opacity: 0, 
+                    scale: 0.95, 
+                    duration: 8, 
+                    ease: "power1.out" 
+                }, 32);
+                
+                masterTl.from(".about-side-copy", { 
+                    opacity: 0, 
+                    x: -10, 
+                    duration: 4, 
+                    ease: "power2.out" 
+                }, 35);
+
+                // ABOUT MOVIMENTO SUTIL DURANTE A PERMANÊNCIA: 42% a 55%
                 masterTl.to("#about", {
                     y: -10,
                     scale: 1.01,
