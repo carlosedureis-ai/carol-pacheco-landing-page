@@ -697,6 +697,11 @@
                 // ==============================================================
                 gsap.set(["#about", "#services"], { opacity: 0, pointerEvents: "none" });
 
+                console.log('[CP-DEBUG] initAnimations running, isMobile:', window.matchMedia("(max-width: 767px)").matches);
+                console.log('[CP-DEBUG] #about element:', document.getElementById("about"));
+                console.log('[CP-DEBUG] .about-mobile element:', document.querySelector(".about-mobile"));
+                console.log('[CP-DEBUG] .about-safe-container element:', document.querySelector(".about-safe-container"));
+
                 isInitialized = true;
 
                 // ==============================================================
