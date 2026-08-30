@@ -833,11 +833,11 @@
                 masterTl.from(".about-mobile-service", { opacity: 0, y: 10, duration: 4, stagger: 0.06, ease: "power2.out" }, 35);
 
                 // ==============================================================
-                // ABOUT - PERMANÊNCIA (Separada por dispositivo)
+                // ABOUT - PERMANÊNCIA E SAÍDA (gsap.matchMedia)
                 // ==============================================================
-                const isMobile = window.matchMedia("(max-width: 767px)").matches;
+                const mm = gsap.matchMedia();
 
-                if (!isMobile) {
+                mm.add("(min-width: 768px)", () => {
                     // DESKTOP: Movimento sutil estrutural durante permanência
                     masterTl.to("#about", {
                         y: -5,
@@ -845,11 +845,28 @@
                         ease: "none",
                         duration: 13
                     }, 42);
-                }
 
-                if (isMobile) {
-                    const mobileAbout = document.querySelector(".about-mobile");
+                    // DESKTOP: ABOUT SAI (inicia em 55)
+                    masterTl.to("#about", {
+                        opacity: 0,
+                        y: -15,
+                        scale: 0.99,
+                        ease: "power2.inOut",
+                        duration: 10,
+                        onStart: () => {
+                            const el = document.getElementById("about");
+                            if (el) el.style.pointerEvents = 'none';
+                        },
+                        onReverseComplete: () => {
+                            const el = document.getElementById("about");
+                            if (el) el.style.pointerEvents = 'auto';
+                        }
+                    }, 55);
+                });
+
+                mm.add("(max-width: 767px)", () => {
                     // MOBILE: Deslocamento real do conteúdo para revelar itens abaixo da viewport
+                    const mobileAbout = document.querySelector(".about-mobile");
                     if (mobileAbout) {
                         masterTl.to(mobileAbout, {
                             y: () => {
@@ -861,27 +878,24 @@
                             duration: 13
                         }, 40);
                     }
-                }
 
-                // ABOUT SAI (Sempre, em ambos dispositivos)
-                // Mobile: inicia em 56 (após scroll do conteúdo)
-                // Desktop: inicia em 55
-                const aboutExitTime = isMobile ? 56 : 55;
-                masterTl.to("#about", {
-                    opacity: 0,
-                    y: -15,
-                    scale: 0.99,
-                    ease: "power2.inOut",
-                    duration: 10,
-                    onStart: () => {
-                        const el = document.getElementById("about");
-                        if (el) el.style.pointerEvents = 'none';
-                    },
-                    onReverseComplete: () => {
-                        const el = document.getElementById("about");
-                        if (el) el.style.pointerEvents = 'auto';
-                    }
-                }, aboutExitTime);
+                    // MOBILE: ABOUT SAI (inicia em 56 após o scroll do conteúdo)
+                    masterTl.to("#about", {
+                        opacity: 0,
+                        y: -15,
+                        scale: 0.99,
+                        ease: "power2.inOut",
+                        duration: 10,
+                        onStart: () => {
+                            const el = document.getElementById("about");
+                            if (el) el.style.pointerEvents = 'none';
+                        },
+                        onReverseComplete: () => {
+                            const el = document.getElementById("about");
+                            if (el) el.style.pointerEvents = 'auto';
+                        }
+                    }, 56);
+                });
 
                 // ==============================================================
                 // SERVICES ENTRA: 58% a 68% (Sobreposição sutil com a saída do About)
