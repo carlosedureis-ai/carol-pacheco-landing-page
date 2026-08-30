@@ -183,10 +183,8 @@
                         }
                         @media (max-width: 767px) {
                             .about-mobile-service-title {
-                                display: -webkit-box;
-                                -webkit-line-clamp: 2;
-                                -webkit-box-orient: vertical;
-                                overflow: hidden;
+                                display: block;
+                                overflow: visible;
                             }
                         }
                         @media (max-width: 340px) {
@@ -343,9 +341,9 @@
                                 <div class="absolute top-0 w-[44px] h-[2px] bg-[#D1A77D]"></div>
                             </div>
 
-                            <!-- 06 SERVIÇOS 01-04 -->
+                            <!-- SERVIÇOS -->
                             <div class="about-mobile-services w-full flex flex-col">
-                                <!-- Servico 1 -->
+                                <!-- Serviço 01 -->
                                 <article class="about-mobile-service flex gap-[18px] py-6 border-b border-[#D1A77D]/20">
                                     <div class="about-feature-icon text-[#D1A77D] shrink-0 pt-1">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-8 h-8" aria-hidden="true">
@@ -363,7 +361,7 @@
                                         <p class="font-sans text-[13.5px] leading-[1.5] text-[rgba(241,236,229,.88)]">Ambientes funcionais, estéticos e personalizados.</p>
                                     </div>
                                 </article>
-                                <!-- Servico 2 -->
+                                <!-- Serviço 02 -->
                                 <article class="about-mobile-service flex gap-[18px] py-6 border-b border-[#D1A77D]/20">
                                     <div class="about-feature-icon text-[#D1A77D] shrink-0 pt-1">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-8 h-8" aria-hidden="true">
@@ -379,7 +377,7 @@
                                         <p class="font-sans text-[13.5px] leading-[1.5] text-[rgba(241,236,229,.88)]">Soluções completas para transformar casas em lares.</p>
                                     </div>
                                 </article>
-                                <!-- Servico 3 -->
+                                <!-- Serviço 03 -->
                                 <article class="about-mobile-service flex gap-[18px] py-6 border-b border-[#D1A77D]/20">
                                     <div class="about-feature-icon text-[#D1A77D] shrink-0 pt-1">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-8 h-8" aria-hidden="true">
@@ -396,7 +394,7 @@
                                         <p class="font-sans text-[13.5px] leading-[1.5] text-[rgba(241,236,229,.88)]">Projetos que fortalecem marcas e elevam experiências.</p>
                                     </div>
                                 </article>
-                                <!-- Servico 4 -->
+                                <!-- Serviço 04 -->
                                 <article class="about-mobile-service flex gap-[18px] py-6 border-b border-[#D1A77D]/20">
                                     <div class="about-feature-icon text-[#D1A77D] shrink-0 pt-1">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-8 h-8" aria-hidden="true">
@@ -719,6 +717,7 @@
                         start: "top top",
                         end: "bottom bottom",
                         scrub: 0.15,
+                        invalidateOnRefresh: true
                     }
                 });
 
@@ -828,40 +827,70 @@
                 masterTl.from(".about-mobile-intro", { opacity: 0, duration: 4, ease: "power2.out" }, 34.5);
                 masterTl.from(".about-mobile-service", { opacity: 0, y: 10, duration: 4, stagger: 0.06, ease: "power2.out" }, 35);
 
-                // ABOUT MOVIMENTO SUTIL DURANTE A PERMANÊNCIA: 42% a 55%
-                masterTl.to("#about", {
-                    y: -5,
-                    scale: 1.005,
-                    ease: "none",
-                    duration: 13
-                }, 42);
+                // ==============================================================
+                // ABOUT - MOVIMENTO DE PERMANÊNCIA E SAÍDA (Separados por dispositivo)
+                // ==============================================================
+                const mm = gsap.matchMedia();
 
-                // NO MOBILE: Scroll nativo simulado durante a permanência se o conteúdo for maior que a tela
-                masterTl.to(".about-mobile", {
-                    y: () => {
-                        const el = document.querySelector('.about-mobile');
-                        if (el && window.innerWidth <= 767) {
-                            const overflow = el.scrollHeight - window.innerHeight;
-                            // Se o conteúdo exceder a tela, transladar para cima
-                            // Adicionando uma margem de segurança de 40px para garantir que o último item seja visto
-                            return overflow > 0 ? -(overflow + 40) : 0;
+                mm.add("(min-width: 768px)", () => {
+                    // DESKTOP: Movimento sutil estrutural
+                    masterTl.to("#about", {
+                        y: -5,
+                        scale: 1.005,
+                        ease: "none",
+                        duration: 13
+                    }, 42);
+
+                    // DESKTOP: About Sai (55% a 65%)
+                    masterTl.to("#about", {
+                        opacity: 0,
+                        y: -15,
+                        scale: 0.99,
+                        ease: "power2.inOut",
+                        duration: 10,
+                        onStart: () => {
+                            const el = document.getElementById("about");
+                            if (el) el.style.pointerEvents = 'none';
+                        },
+                        onReverseComplete: () => {
+                            const el = document.getElementById("about");
+                            if (el) el.style.pointerEvents = 'auto';
                         }
-                        return 0;
-                    },
-                    ease: "none",
-                    duration: 13
-                }, 42);
+                    }, 55);
+                });
 
-                // ABOUT SAI: 55% a 65% (Iniciando a saída suave)
-                masterTl.to("#about", {
-                    opacity: 0,
-                    y: -15,
-                    scale: 0.99,
-                    ease: "power2.inOut",
-                    duration: 10,
-                    onStart: () => document.getElementById("about").style.pointerEvents = 'none',
-                    onReverseComplete: () => document.getElementById("about").style.pointerEvents = 'auto'
-                }, 55);
+                mm.add("(max-width: 767px)", () => {
+                    const mobileAbout = document.querySelector(".about-mobile");
+                    
+                    // MOBILE: Deslocamento real do conteúdo para revelar itens (40% a 53%)
+                    masterTl.to(mobileAbout, {
+                        y: () => {
+                            if (!mobileAbout) return 0;
+                            const viewportHeight = window.visualViewport?.height || window.innerHeight;
+                            const overflow = mobileAbout.scrollHeight - viewportHeight;
+                            return -Math.max(0, overflow + 24);
+                        },
+                        ease: "none",
+                        duration: 13
+                    }, 40);
+
+                    // MOBILE: Permanência de leitura de 53% a 56%, depois About Sai (56% a 66%)
+                    masterTl.to("#about", {
+                        opacity: 0,
+                        y: -15,
+                        scale: 0.99,
+                        ease: "power2.inOut",
+                        duration: 10,
+                        onStart: () => {
+                            const el = document.getElementById("about");
+                            if (el) el.style.pointerEvents = 'none';
+                        },
+                        onReverseComplete: () => {
+                            const el = document.getElementById("about");
+                            if (el) el.style.pointerEvents = 'auto';
+                        }
+                    }, 56);
+                });
 
                 // ==============================================================
                 // SERVICES ENTRA: 58% a 68% (Sobreposição sutil com a saída do About)
