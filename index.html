@@ -262,45 +262,93 @@
                                 </div>
 
                                 <div class="w-full max-w-[700px] flex flex-col relative z-10 pointer-events-auto">
-                                    <!-- Item 01 -->
-                                    <article class="service-item group relative flex items-center justify-between py-10 px-8 border-t border-[#f1ece5]/10 transition-all duration-500 hover:border-[#D1A77D]/50 hover:bg-[#f1ece5]/[0.04] hover:backdrop-blur-[2px]" style="border-top-color: rgba(241,236,229,0.18);">
-                                        <div class="flex items-center gap-10">
-                                            <span class="service-number font-serif text-[1.4rem] text-[#D1A77D]">01</span>
-                                            <div class="flex flex-col gap-3 border-l border-[#f1ece5]/15 pl-10">
-                                                <h3 class="service-name font-serif uppercase text-[#F1ECE5] transition-colors duration-500 group-hover:text-[#D1A77D]" style="font-size: clamp(2rem, 2.5vw, 3.1rem); line-height: 1;">Residencial</h3>
-                                                <p class="service-description font-sans font-light text-[clamp(0.9rem,1vw,1.05rem)] leading-[1.55] text-[#f1ece5]/80">Casas pensadas para sua rotina, identidade e forma de viver.</p>
+                                    <!-- Item 01 Desktop -->
+                                    <article class="service-item group relative flex flex-col py-8 px-8 border-t border-[#f1ece5]/10 transition-colors duration-500 hover:border-[#D1A77D]/50 hover:bg-[#f1ece5]/[0.04] cursor-pointer" role="button" tabindex="0" aria-expanded="false" style="border-top-color: rgba(241,236,229,0.18);">
+                                        <div class="flex items-center justify-between relative z-20 pointer-events-none w-full">
+                                            <div class="flex items-center gap-10">
+                                                <span class="service-number font-serif text-[1.4rem] text-[#D1A77D]">01</span>
+                                                <div class="flex flex-col gap-3 border-l border-[#f1ece5]/15 pl-10">
+                                                    <h3 class="service-name font-serif uppercase text-[#F1ECE5] transition-colors duration-500 group-hover:text-[#D1A77D]" style="font-size: clamp(2rem, 2.5vw, 3.1rem); line-height: 1;">Residencial</h3>
+                                                    <p class="service-description font-sans font-light text-[clamp(0.9rem,1vw,1.05rem)] leading-[1.55] text-[#f1ece5]/80">Casas pensadas para sua rotina, identidade e forma de viver.</p>
+                                                </div>
+                                            </div>
+                                            <div class="service-arrow text-[#D1A77D] text-2xl font-light opacity-50 transition-all duration-500 group-hover:opacity-100">
+                                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                                             </div>
                                         </div>
-                                        <div class="service-arrow text-[#D1A77D] text-2xl font-light opacity-50 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-2">
-                                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                        <div class="service-folder-container relative w-full overflow-visible flex justify-center opacity-0 pointer-events-none transition-all duration-500" style="height: 0px; margin-top: 0px;">
+                                            <div class="service-folder-back absolute bottom-0 w-[85%] h-[110px] rounded-[2px] border border-[#D1A77D]/15 bg-[#1a1814]/60"></div>
+                                            <div class="service-sheet service-sheet-3 absolute bottom-2 w-[65%] h-[100px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_12px_35px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[1]">
+                                                <span class="font-serif text-[#1a1814] text-[14px] uppercase tracking-[0.1em] font-medium">Conforto</span>
+                                            </div>
+                                            <div class="service-sheet service-sheet-2 absolute bottom-2 w-[70%] h-[100px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_12px_35px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[2]">
+                                                <span class="font-serif text-[#1a1814] text-[14px] uppercase tracking-[0.1em] font-medium">Identidade</span>
+                                            </div>
+                                            <div class="service-sheet service-sheet-1 absolute bottom-2 w-[75%] h-[100px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_12px_35px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[3] pointer-events-auto">
+                                                <span class="font-serif text-[#1a1814] text-[14px] uppercase tracking-[0.1em] font-medium">Morar</span>
+                                            </div>
+                                            <div class="service-folder-front-left absolute left-[7.5%] bottom-0 w-[42.5%] h-[90px] rounded-[2px] border-t border-l border-[#D1A77D]/25 bg-[rgba(30,28,26,0.85)] backdrop-blur-[3px] transform-gpu origin-bottom-left z-[4]"></div>
+                                            <div class="service-folder-front-right absolute right-[7.5%] bottom-0 w-[42.5%] h-[90px] rounded-[2px] border-t border-r border-[#D1A77D]/25 bg-[rgba(30,28,26,0.85)] backdrop-blur-[3px] transform-gpu origin-bottom-right z-[4]"></div>
                                         </div>
                                     </article>
 
-                                    <!-- Item 02 -->
-                                    <article class="service-item group relative flex items-center justify-between py-10 px-8 border-t border-[#f1ece5]/10 transition-all duration-500 hover:border-[#D1A77D]/50 hover:bg-[#f1ece5]/[0.04] hover:backdrop-blur-[2px]" style="border-top-color: rgba(241,236,229,0.18);">
-                                        <div class="flex items-center gap-10">
-                                            <span class="service-number font-serif text-[1.4rem] text-[#D1A77D]">02</span>
-                                            <div class="flex flex-col gap-3 border-l border-[#f1ece5]/15 pl-10">
-                                                <h3 class="service-name font-serif uppercase text-[#F1ECE5] transition-colors duration-500 group-hover:text-[#D1A77D]" style="font-size: clamp(2rem, 2.5vw, 3.1rem); line-height: 1;">Interiores</h3>
-                                                <p class="service-description font-sans font-light text-[clamp(0.9rem,1vw,1.05rem)] leading-[1.55] text-[#f1ece5]/80">Ambientes que equilibram estética, funcionalidade e conforto.</p>
+                                    <!-- Item 02 Desktop -->
+                                    <article class="service-item group relative flex flex-col py-8 px-8 border-t border-[#f1ece5]/10 transition-colors duration-500 hover:border-[#D1A77D]/50 hover:bg-[#f1ece5]/[0.04] cursor-pointer" role="button" tabindex="0" aria-expanded="false" style="border-top-color: rgba(241,236,229,0.18);">
+                                        <div class="flex items-center justify-between relative z-20 pointer-events-none w-full">
+                                            <div class="flex items-center gap-10">
+                                                <span class="service-number font-serif text-[1.4rem] text-[#D1A77D]">02</span>
+                                                <div class="flex flex-col gap-3 border-l border-[#f1ece5]/15 pl-10">
+                                                    <h3 class="service-name font-serif uppercase text-[#F1ECE5] transition-colors duration-500 group-hover:text-[#D1A77D]" style="font-size: clamp(2rem, 2.5vw, 3.1rem); line-height: 1;">Interiores</h3>
+                                                    <p class="service-description font-sans font-light text-[clamp(0.9rem,1vw,1.05rem)] leading-[1.55] text-[#f1ece5]/80">Ambientes que equilibram estética, funcionalidade e conforto.</p>
+                                                </div>
+                                            </div>
+                                            <div class="service-arrow text-[#D1A77D] text-2xl font-light opacity-50 transition-all duration-500 group-hover:opacity-100">
+                                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                                             </div>
                                         </div>
-                                        <div class="service-arrow text-[#D1A77D] text-2xl font-light opacity-50 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-2">
-                                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                        <div class="service-folder-container relative w-full overflow-visible flex justify-center opacity-0 pointer-events-none transition-all duration-500" style="height: 0px; margin-top: 0px;">
+                                            <div class="service-folder-back absolute bottom-0 w-[85%] h-[110px] rounded-[2px] border border-[#D1A77D]/15 bg-[#1a1814]/60"></div>
+                                            <div class="service-sheet service-sheet-3 absolute bottom-2 w-[65%] h-[100px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_12px_35px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[1]">
+                                                <span class="font-serif text-[#1a1814] text-[14px] uppercase tracking-[0.1em] font-medium">Atmosfera</span>
+                                            </div>
+                                            <div class="service-sheet service-sheet-2 absolute bottom-2 w-[70%] h-[100px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_12px_35px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[2]">
+                                                <span class="font-serif text-[#1a1814] text-[14px] uppercase tracking-[0.1em] font-medium">Função</span>
+                                            </div>
+                                            <div class="service-sheet service-sheet-1 absolute bottom-2 w-[75%] h-[100px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_12px_35px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[3] pointer-events-auto">
+                                                <span class="font-serif text-[#1a1814] text-[14px] uppercase tracking-[0.1em] font-medium">Estética</span>
+                                            </div>
+                                            <div class="service-folder-front-left absolute left-[7.5%] bottom-0 w-[42.5%] h-[90px] rounded-[2px] border-t border-l border-[#D1A77D]/25 bg-[rgba(30,28,26,0.85)] backdrop-blur-[3px] transform-gpu origin-bottom-left z-[4]"></div>
+                                            <div class="service-folder-front-right absolute right-[7.5%] bottom-0 w-[42.5%] h-[90px] rounded-[2px] border-t border-r border-[#D1A77D]/25 bg-[rgba(30,28,26,0.85)] backdrop-blur-[3px] transform-gpu origin-bottom-right z-[4]"></div>
                                         </div>
                                     </article>
 
-                                    <!-- Item 03 -->
-                                    <article class="service-item group relative flex items-center justify-between py-10 px-8 border-y border-[#f1ece5]/10 transition-all duration-500 hover:border-[#D1A77D]/50 hover:bg-[#f1ece5]/[0.04] hover:backdrop-blur-[2px]" style="border-top-color: rgba(241,236,229,0.18); border-bottom-color: rgba(241,236,229,0.18);">
-                                        <div class="flex items-center gap-10">
-                                            <span class="service-number font-serif text-[1.4rem] text-[#D1A77D]">03</span>
-                                            <div class="flex flex-col gap-3 border-l border-[#f1ece5]/15 pl-10">
-                                                <h3 class="service-name font-serif uppercase text-[#F1ECE5] transition-colors duration-500 group-hover:text-[#D1A77D]" style="font-size: clamp(2rem, 2.5vw, 3.1rem); line-height: 1;">Comercial</h3>
-                                                <p class="service-description font-sans font-light text-[clamp(0.9rem,1vw,1.05rem)] leading-[1.55] text-[#f1ece5]/80">Espaços que comunicam posicionamento e experiência de marca.</p>
+                                    <!-- Item 03 Desktop -->
+                                    <article class="service-item group relative flex flex-col py-8 px-8 border-y border-[#f1ece5]/10 transition-colors duration-500 hover:border-[#D1A77D]/50 hover:bg-[#f1ece5]/[0.04] cursor-pointer" role="button" tabindex="0" aria-expanded="false" style="border-top-color: rgba(241,236,229,0.18); border-bottom-color: rgba(241,236,229,0.18);">
+                                        <div class="flex items-center justify-between relative z-20 pointer-events-none w-full">
+                                            <div class="flex items-center gap-10">
+                                                <span class="service-number font-serif text-[1.4rem] text-[#D1A77D]">03</span>
+                                                <div class="flex flex-col gap-3 border-l border-[#f1ece5]/15 pl-10">
+                                                    <h3 class="service-name font-serif uppercase text-[#F1ECE5] transition-colors duration-500 group-hover:text-[#D1A77D]" style="font-size: clamp(2rem, 2.5vw, 3.1rem); line-height: 1;">Comercial</h3>
+                                                    <p class="service-description font-sans font-light text-[clamp(0.9rem,1vw,1.05rem)] leading-[1.55] text-[#f1ece5]/80">Espaços que comunicam posicionamento e experiência de marca.</p>
+                                                </div>
+                                            </div>
+                                            <div class="service-arrow text-[#D1A77D] text-2xl font-light opacity-50 transition-all duration-500 group-hover:opacity-100">
+                                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                                             </div>
                                         </div>
-                                        <div class="service-arrow text-[#D1A77D] text-2xl font-light opacity-50 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-2">
-                                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                        <div class="service-folder-container relative w-full overflow-visible flex justify-center opacity-0 pointer-events-none transition-all duration-500" style="height: 0px; margin-top: 0px;">
+                                            <div class="service-folder-back absolute bottom-0 w-[85%] h-[110px] rounded-[2px] border border-[#D1A77D]/15 bg-[#1a1814]/60"></div>
+                                            <div class="service-sheet service-sheet-3 absolute bottom-2 w-[65%] h-[100px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_12px_35px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[1]">
+                                                <span class="font-serif text-[#1a1814] text-[14px] uppercase tracking-[0.1em] font-medium">Posicionamento</span>
+                                            </div>
+                                            <div class="service-sheet service-sheet-2 absolute bottom-2 w-[70%] h-[100px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_12px_35px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[2]">
+                                                <span class="font-serif text-[#1a1814] text-[14px] uppercase tracking-[0.1em] font-medium">Experiência</span>
+                                            </div>
+                                            <div class="service-sheet service-sheet-1 absolute bottom-2 w-[75%] h-[100px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_12px_35px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[3] pointer-events-auto">
+                                                <span class="font-serif text-[#1a1814] text-[14px] uppercase tracking-[0.1em] font-medium">Marca</span>
+                                            </div>
+                                            <div class="service-folder-front-left absolute left-[7.5%] bottom-0 w-[42.5%] h-[90px] rounded-[2px] border-t border-l border-[#D1A77D]/25 bg-[rgba(30,28,26,0.85)] backdrop-blur-[3px] transform-gpu origin-bottom-left z-[4]"></div>
+                                            <div class="service-folder-front-right absolute right-[7.5%] bottom-0 w-[42.5%] h-[90px] rounded-[2px] border-t border-r border-[#D1A77D]/25 bg-[rgba(30,28,26,0.85)] backdrop-blur-[3px] transform-gpu origin-bottom-right z-[4]"></div>
                                         </div>
                                     </article>
                                 </div>
@@ -322,43 +370,94 @@
                             
                             <!-- Services Mobile -->
                             <div class="flex flex-col w-full shrink-0 relative z-20">
-                                <article class="service-item flex flex-col gap-3 py-7 border-t border-[#f1ece5]/15">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center gap-5">
-                                            <span class="service-number font-serif text-[1.3rem] text-[#D1A77D]">01</span>
-                                            <h3 class="service-name font-serif uppercase text-[#F1ECE5]" style="font-size: clamp(1.7rem, 8vw, 2.3rem); line-height: 1;">Residencial</h3>
+                                <!-- Mobile Item 1 -->
+                                <article class="service-item flex flex-col pt-7 border-t border-[#f1ece5]/15 cursor-pointer" role="button" tabindex="0" aria-expanded="false">
+                                    <div class="flex flex-col gap-3 relative z-20 pointer-events-none pb-4">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-5">
+                                                <span class="service-number font-serif text-[1.3rem] text-[#D1A77D]">01</span>
+                                                <h3 class="service-name font-serif uppercase text-[#F1ECE5]" style="font-size: clamp(1.7rem, 8vw, 2.3rem); line-height: 1;">Residencial</h3>
+                                            </div>
+                                            <div class="service-arrow text-[#D1A77D] opacity-70 transition-transform duration-500">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                            </div>
                                         </div>
-                                        <div class="service-arrow text-[#D1A77D] opacity-70">
-                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                        </div>
+                                        <p class="service-description font-sans font-light text-[15px] leading-relaxed text-[#F1ECE5]/80 pl-[3.2rem]">Casas pensadas para sua rotina, identidade e forma de viver.</p>
                                     </div>
-                                    <p class="service-description font-sans font-light text-[15px] leading-relaxed text-[#F1ECE5]/80 pl-[3.2rem]">Casas pensadas para sua rotina, identidade e forma de viver.</p>
+                                    <div class="service-folder-container relative w-full overflow-visible flex justify-center opacity-0 pointer-events-none transition-all duration-500" style="height: 0px;">
+                                        <div class="service-folder-back absolute bottom-0 w-[95%] h-[90px] rounded-[2px] border border-[#D1A77D]/15 bg-[#1a1814]/60"></div>
+                                        <div class="service-sheet service-sheet-3 absolute bottom-2 w-[75%] h-[80px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_8px_20px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[1]">
+                                            <span class="font-serif text-[#1a1814] text-[13px] uppercase tracking-[0.1em] font-medium">Conforto</span>
+                                        </div>
+                                        <div class="service-sheet service-sheet-2 absolute bottom-2 w-[80%] h-[80px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_8px_20px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[2]">
+                                            <span class="font-serif text-[#1a1814] text-[13px] uppercase tracking-[0.1em] font-medium">Identidade</span>
+                                        </div>
+                                        <div class="service-sheet service-sheet-1 absolute bottom-2 w-[85%] h-[80px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_8px_20px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[3] pointer-events-auto">
+                                            <span class="font-serif text-[#1a1814] text-[13px] uppercase tracking-[0.1em] font-medium">Morar</span>
+                                        </div>
+                                        <div class="service-folder-front-left absolute left-[2.5%] bottom-0 w-[47.5%] h-[75px] rounded-[2px] border-t border-l border-[#D1A77D]/25 bg-[rgba(30,28,26,0.85)] backdrop-blur-[3px] transform-gpu origin-bottom-left z-[4]"></div>
+                                        <div class="service-folder-front-right absolute right-[2.5%] bottom-0 w-[47.5%] h-[75px] rounded-[2px] border-t border-r border-[#D1A77D]/25 bg-[rgba(30,28,26,0.85)] backdrop-blur-[3px] transform-gpu origin-bottom-right z-[4]"></div>
+                                    </div>
                                 </article>
 
-                                <article class="service-item flex flex-col gap-3 py-7 border-t border-[#f1ece5]/15">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center gap-5">
-                                            <span class="service-number font-serif text-[1.3rem] text-[#D1A77D]">02</span>
-                                            <h3 class="service-name font-serif uppercase text-[#F1ECE5]" style="font-size: clamp(1.7rem, 8vw, 2.3rem); line-height: 1;">Interiores</h3>
+                                <!-- Mobile Item 2 -->
+                                <article class="service-item flex flex-col pt-7 border-t border-[#f1ece5]/15 cursor-pointer" role="button" tabindex="0" aria-expanded="false">
+                                    <div class="flex flex-col gap-3 relative z-20 pointer-events-none pb-4">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-5">
+                                                <span class="service-number font-serif text-[1.3rem] text-[#D1A77D]">02</span>
+                                                <h3 class="service-name font-serif uppercase text-[#F1ECE5]" style="font-size: clamp(1.7rem, 8vw, 2.3rem); line-height: 1;">Interiores</h3>
+                                            </div>
+                                            <div class="service-arrow text-[#D1A77D] opacity-70 transition-transform duration-500">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                            </div>
                                         </div>
-                                        <div class="service-arrow text-[#D1A77D] opacity-70">
-                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                        </div>
+                                        <p class="service-description font-sans font-light text-[15px] leading-relaxed text-[#F1ECE5]/80 pl-[3.2rem]">Ambientes que equilibram estética, funcionalidade e conforto.</p>
                                     </div>
-                                    <p class="service-description font-sans font-light text-[15px] leading-relaxed text-[#F1ECE5]/80 pl-[3.2rem]">Ambientes que equilibram estética, funcionalidade e conforto.</p>
+                                    <div class="service-folder-container relative w-full overflow-visible flex justify-center opacity-0 pointer-events-none transition-all duration-500" style="height: 0px;">
+                                        <div class="service-folder-back absolute bottom-0 w-[95%] h-[90px] rounded-[2px] border border-[#D1A77D]/15 bg-[#1a1814]/60"></div>
+                                        <div class="service-sheet service-sheet-3 absolute bottom-2 w-[75%] h-[80px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_8px_20px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[1]">
+                                            <span class="font-serif text-[#1a1814] text-[13px] uppercase tracking-[0.1em] font-medium">Atmosfera</span>
+                                        </div>
+                                        <div class="service-sheet service-sheet-2 absolute bottom-2 w-[80%] h-[80px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_8px_20px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[2]">
+                                            <span class="font-serif text-[#1a1814] text-[13px] uppercase tracking-[0.1em] font-medium">Função</span>
+                                        </div>
+                                        <div class="service-sheet service-sheet-1 absolute bottom-2 w-[85%] h-[80px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_8px_20px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[3] pointer-events-auto">
+                                            <span class="font-serif text-[#1a1814] text-[13px] uppercase tracking-[0.1em] font-medium">Estética</span>
+                                        </div>
+                                        <div class="service-folder-front-left absolute left-[2.5%] bottom-0 w-[47.5%] h-[75px] rounded-[2px] border-t border-l border-[#D1A77D]/25 bg-[rgba(30,28,26,0.85)] backdrop-blur-[3px] transform-gpu origin-bottom-left z-[4]"></div>
+                                        <div class="service-folder-front-right absolute right-[2.5%] bottom-0 w-[47.5%] h-[75px] rounded-[2px] border-t border-r border-[#D1A77D]/25 bg-[rgba(30,28,26,0.85)] backdrop-blur-[3px] transform-gpu origin-bottom-right z-[4]"></div>
+                                    </div>
                                 </article>
 
-                                <article class="service-item flex flex-col gap-3 py-7 border-y border-[#f1ece5]/15">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center gap-5">
-                                            <span class="service-number font-serif text-[1.3rem] text-[#D1A77D]">03</span>
-                                            <h3 class="service-name font-serif uppercase text-[#F1ECE5]" style="font-size: clamp(1.7rem, 8vw, 2.3rem); line-height: 1;">Comercial</h3>
+                                <!-- Mobile Item 3 -->
+                                <article class="service-item flex flex-col pt-7 border-y border-[#f1ece5]/15 cursor-pointer" role="button" tabindex="0" aria-expanded="false">
+                                    <div class="flex flex-col gap-3 relative z-20 pointer-events-none pb-4">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-5">
+                                                <span class="service-number font-serif text-[1.3rem] text-[#D1A77D]">03</span>
+                                                <h3 class="service-name font-serif uppercase text-[#F1ECE5]" style="font-size: clamp(1.7rem, 8vw, 2.3rem); line-height: 1;">Comercial</h3>
+                                            </div>
+                                            <div class="service-arrow text-[#D1A77D] opacity-70 transition-transform duration-500">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                            </div>
                                         </div>
-                                        <div class="service-arrow text-[#D1A77D] opacity-70">
-                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                        </div>
+                                        <p class="service-description font-sans font-light text-[15px] leading-relaxed text-[#F1ECE5]/80 pl-[3.2rem]">Espaços que comunicam posicionamento e experiência de marca.</p>
                                     </div>
-                                    <p class="service-description font-sans font-light text-[15px] leading-relaxed text-[#F1ECE5]/80 pl-[3.2rem]">Espaços que comunicam posicionamento e experiência de marca.</p>
+                                    <div class="service-folder-container relative w-full overflow-visible flex justify-center opacity-0 pointer-events-none transition-all duration-500" style="height: 0px;">
+                                        <div class="service-folder-back absolute bottom-0 w-[95%] h-[90px] rounded-[2px] border border-[#D1A77D]/15 bg-[#1a1814]/60"></div>
+                                        <div class="service-sheet service-sheet-3 absolute bottom-2 w-[75%] h-[80px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_8px_20px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[1]">
+                                            <span class="font-serif text-[#1a1814] text-[13px] uppercase tracking-[0.1em] font-medium">Posicionamento</span>
+                                        </div>
+                                        <div class="service-sheet service-sheet-2 absolute bottom-2 w-[80%] h-[80px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_8px_20px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[2]">
+                                            <span class="font-serif text-[#1a1814] text-[13px] uppercase tracking-[0.1em] font-medium">Experiência</span>
+                                        </div>
+                                        <div class="service-sheet service-sheet-1 absolute bottom-2 w-[85%] h-[80px] bg-[rgba(241,236,229,0.92)] rounded-[3px] border border-[#b88c62]/22 shadow-[0_8px_20px_rgba(0,0,0,0.16)] flex items-center justify-center transform-gpu origin-bottom z-[3] pointer-events-auto">
+                                            <span class="font-serif text-[#1a1814] text-[13px] uppercase tracking-[0.1em] font-medium">Marca</span>
+                                        </div>
+                                        <div class="service-folder-front-left absolute left-[2.5%] bottom-0 w-[47.5%] h-[75px] rounded-[2px] border-t border-l border-[#D1A77D]/25 bg-[rgba(30,28,26,0.85)] backdrop-blur-[3px] transform-gpu origin-bottom-left z-[4]"></div>
+                                        <div class="service-folder-front-right absolute right-[2.5%] bottom-0 w-[47.5%] h-[75px] rounded-[2px] border-t border-r border-[#D1A77D]/25 bg-[rgba(30,28,26,0.85)] backdrop-blur-[3px] transform-gpu origin-bottom-right z-[4]"></div>
+                                    </div>
                                 </article>
                             </div>
                         </div>
@@ -597,10 +696,155 @@
                 }
             };
 
+            // ==============================================================
+            // INTERACTIVE FOLDER LOGIC (SERVIÇOS)
+            // ==============================================================
+            const initInteractiveFolders = () => {
+                const serviceItems = document.querySelectorAll(".service-item");
+                let openItem = null;
+                let hoverTimeout = null;
+                const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+                const openFolder = (item) => {
+                    if (openItem === item) return;
+                    if (openItem) closeFolder(openItem);
+                    openItem = item;
+                    item.setAttribute("aria-expanded", "true");
+
+                    const container = item.querySelector(".service-folder-container");
+                    const frontLeft = item.querySelector(".service-folder-front-left");
+                    const frontRight = item.querySelector(".service-folder-front-right");
+                    const sheet1 = item.querySelector(".service-sheet-1");
+                    const sheet2 = item.querySelector(".service-sheet-2");
+                    const sheet3 = item.querySelector(".service-sheet-3");
+                    const arrow = item.querySelector(".service-arrow");
+                    const isMobile = window.innerWidth <= 767;
+
+                    // Container expand
+                    gsap.to(container, { height: isMobile ? 120 : 160, marginTop: 24, opacity: 1, duration: 0.4, ease: "power2.out" });
+                    
+                    // Arrow rotate
+                    gsap.to(arrow, { rotation: -35, x: 5, duration: 0.4, ease: "power2.out" });
+
+                    const tl = gsap.timeline();
+                    if (!isReducedMotion) {
+                        // Open covers
+                        tl.to(frontLeft, { skewX: 7, scaleY: 0.72, y: 5, duration: 0.4, ease: "power3.out" }, 0);
+                        tl.to(frontRight, { skewX: -7, scaleY: 0.72, y: 5, duration: 0.4, ease: "power3.out" }, 0);
+
+                        // Pop sheets
+                        const sheet1Y = isMobile ? -24 : -42;
+                        const sheet2Y = isMobile ? -34 : -58;
+                        const sheet3Y = isMobile ? -44 : -72;
+                        
+                        tl.to(sheet1, { y: sheet1Y, x: isMobile ? -5 : -18, rotation: -3, duration: 0.5, ease: "power3.out" }, 0.1);
+                        tl.to(sheet2, { y: sheet2Y, x: isMobile ? 5 : 10, rotation: 2.5, duration: 0.5, ease: "power3.out" }, 0.15);
+                        tl.to(sheet3, { y: sheet3Y, x: 0, rotation: 0.5, duration: 0.5, ease: "power3.out" }, 0.2);
+                    } else {
+                        tl.to([sheet1, sheet2, sheet3], { y: -20, stagger: 0.1, duration: 0.4 }, 0);
+                    }
+                };
+
+                const closeFolder = (item) => {
+                    if (openItem === item) openItem = null;
+                    item.setAttribute("aria-expanded", "false");
+
+                    const container = item.querySelector(".service-folder-container");
+                    const frontLeft = item.querySelector(".service-folder-front-left");
+                    const frontRight = item.querySelector(".service-folder-front-right");
+                    const sheet1 = item.querySelector(".service-sheet-1");
+                    const sheet2 = item.querySelector(".service-sheet-2");
+                    const sheet3 = item.querySelector(".service-sheet-3");
+                    const arrow = item.querySelector(".service-arrow");
+
+                    // Container collapse
+                    gsap.to(container, { height: 0, marginTop: 0, opacity: 0, duration: 0.35, ease: "power2.inOut" });
+                    gsap.to(arrow, { rotation: 0, x: 0, duration: 0.3, ease: "power2.inOut" });
+
+                    const tl = gsap.timeline();
+                    if (!isReducedMotion) {
+                        // Close sheets in reverse
+                        tl.to(sheet3, { y: 0, x: 0, rotation: 0, duration: 0.3, ease: "power2.inOut" }, 0);
+                        tl.to(sheet2, { y: 0, x: 0, rotation: 0, duration: 0.3, ease: "power2.inOut" }, 0.05);
+                        tl.to(sheet1, { y: 0, x: 0, rotation: 0, duration: 0.3, ease: "power2.inOut" }, 0.1);
+
+                        // Close covers
+                        tl.to([frontLeft, frontRight], { skewX: 0, scaleY: 1, y: 0, duration: 0.3, ease: "power2.inOut" }, 0.2);
+                    } else {
+                        tl.to([sheet1, sheet2, sheet3], { y: 0, duration: 0.3 }, 0);
+                    }
+                };
+
+                serviceItems.forEach(item => {
+                    item.addEventListener("mouseenter", () => {
+                        if (window.innerWidth <= 767) return;
+                        hoverTimeout = setTimeout(() => {
+                            openFolder(item);
+                        }, 120);
+                    });
+
+                    item.addEventListener("mouseleave", () => {
+                        if (window.innerWidth <= 767) return;
+                        clearTimeout(hoverTimeout);
+                        if (openItem === item) closeFolder(item);
+                    });
+
+                    item.addEventListener("click", () => {
+                        if (openItem === item) {
+                            closeFolder(item);
+                        } else {
+                            openFolder(item);
+                        }
+                    });
+
+                    item.addEventListener("keydown", (e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            if (openItem === item) closeFolder(item);
+                            else openFolder(item);
+                        }
+                    });
+
+                    // Drift Effect
+                    if (!isReducedMotion) {
+                        const sheet1 = item.querySelector(".service-sheet-1");
+                        const sheet2 = item.querySelector(".service-sheet-2");
+                        item.addEventListener("mousemove", (e) => {
+                            if (window.innerWidth <= 767 || openItem !== item) return;
+                            
+                            const rect = item.getBoundingClientRect();
+                            const centerX = rect.left + rect.width / 2;
+                            const centerY = rect.top + rect.height / 2;
+                            
+                            const deltaX = (e.clientX - centerX) / (rect.width / 2); // -1 to 1
+                            const deltaY = (e.clientY - centerY) / (rect.height / 2); // -1 to 1
+
+                            gsap.to(sheet1, { 
+                                x: -18 + (deltaX * 5), 
+                                y: -42 + (deltaY * 4), 
+                                rotation: -3 + (deltaX * 0.8), 
+                                scale: 1.01,
+                                duration: 0.4, 
+                                ease: "power1.out" 
+                            });
+                            
+                            gsap.to(sheet2, { 
+                                x: 10 + (deltaX * 3), 
+                                y: -58 + (deltaY * 3), 
+                                rotation: 2.5 + (deltaX * 0.5), 
+                                duration: 0.5, 
+                                ease: "power1.out" 
+                            });
+                        });
+                    }
+                });
+            };
+
             // INICIALIZAÇÃO IMEDIATA E SÍNCRONA
             // Cria a timeline instantaneamente para não quebrar o layout/scroll no mobile,
             // mesmo se os vídeos demorarem para carregar o metadata no iOS.
             initAnimations();
+            initInteractiveFolders();
 
             // ESTRATÉGIA AGRESSIVA DE CARREGAMENTO PARA MOBILE (iOS SAFARI)
             // Tenta forçar o pre-load silencioso no background
