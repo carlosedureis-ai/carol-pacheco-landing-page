@@ -109,25 +109,57 @@
 
                     <!-- CHAPTER 02: ABOUT -->
                     <!-- GSAP removerá o opacity-0 inicial via animação. Usaremos visibilidade base para SEO. -->
-                    <section id="about" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none" style="background: transparent !important; z-index: 10;">
+                    <style>
+                        :root {
+                            --header-safe-area: clamp(72px, 9vh, 110px);
+                            --section-bottom-safe: clamp(32px, 5vh, 72px);
+                        }
+                        #about {
+                            overflow: hidden;
+                        }
+                        .about-safe-container {
+                            position: absolute;
+                            height: calc(100dvh - var(--header-safe-area) - var(--section-bottom-safe));
+                            top: var(--header-safe-area);
+                            left: 0;
+                            right: 0;
+                            max-height: 900px;
+                            width: min(92vw, 1500px);
+                            margin: 0 auto;
+                            overflow: hidden;
+                        }
+                        @media (max-height: 760px) {
+                            .about-carol {
+                                height: clamp(360px, 54vh, 580px) !important;
+                            }
+                            .about-title-line {
+                                font-size: clamp(2.5rem, 4vw, 4.4rem) !important;
+                            }
+                            .about-bottom-band {
+                                padding-top: 16px !important;
+                                padding-bottom: 16px !important;
+                            }
+                        }
+                    </style>
+                    <section id="about" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none" style="background: transparent !important; z-index: 4;">
                         
                         <!-- GRADIENTE DE LEGIBILIDADE (Apenas esquerdo, sutil, exigido no desktop) -->
                         <div class="absolute inset-y-0 left-0 w-full md:w-[60%] pointer-events-none z-[1] hidden md:block" style="background: linear-gradient(90deg, rgba(10,8,6,0.52) 0%, rgba(10,8,6,0.27) 42%, rgba(10,8,6,0) 72%);"></div>
 
                         <!-- WRAPPER DESKTOP (>767px) -->
-                        <div class="relative z-[2] hidden md:flex flex-col w-[min(92vw,1600px)] h-full mx-auto justify-end pointer-events-none pb-4 lg:pb-8">
+                        <div class="about-safe-container z-[2] hidden md:flex flex-col justify-end pointer-events-none pb-4 lg:pb-8">
                             
                             <!-- ÁREA SUPERIOR: Headline + Carol -->
-                            <div class="flex-1 w-full flex items-end justify-between relative min-h-0">
+                            <div class="flex-1 w-full grid relative min-h-0 items-end" style="grid-template-columns: minmax(0, .95fr) minmax(320px, .75fr); gap: clamp(24px, 4vw, 72px);">
                                 
                                 <!-- LEFT 45% (Editorial) -->
-                                <div class="w-[45%] flex flex-col justify-center h-full text-white pl-4 relative z-20">
+                                <div class="flex flex-col justify-center h-full text-white relative z-20">
                                     <div class="about-eyebrow flex items-center gap-4 mb-6">
                                         <span class="uppercase tracking-[0.2em] font-semibold text-[11px] text-[var(--accent-gold)]">Sobre</span>
                                         <div class="w-8 h-[1px] bg-[var(--accent-gold)] opacity-50"></div>
                                     </div>
                                     
-                                    <h2 class="font-serif leading-[0.9] font-medium text-[#F1ECE5]" style="font-size: clamp(3.4rem, 5.3vw, 6.7rem); text-shadow: 0 2px 18px rgba(0,0,0,0.25);">
+                                    <h2 class="font-serif font-medium text-[#F1ECE5]" style="font-size: clamp(2.8rem, 4.4vw, 5.4rem); line-height: 0.92; text-shadow: 0 2px 18px rgba(0,0,0,0.25); max-width: 11ch;">
                                         <div class="overflow-hidden pb-2"><div class="about-title-line">Projetos que</div></div>
                                         <div class="overflow-hidden pb-2"><div class="about-title-line">traduzem sua</div></div>
                                         <div class="overflow-hidden pb-2"><div class="about-title-line">essência em</div></div>
@@ -136,52 +168,52 @@
                                 </div>
                                 
                                 <!-- RIGHT 55% (Carol) -->
-                                <div class="w-[55%] h-full flex justify-center items-end relative z-10">
+                                <div class="h-full flex justify-center items-end relative z-10 min-h-0">
                                     <img 
                                         src="./carol-about.webp" 
                                         alt="Carol Pacheco Arquiteta" 
-                                        class="about-carol relative z-10 w-full object-contain object-bottom pointer-events-none"
-                                        style="height: clamp(520px, 72vh, 900px);"
+                                        class="about-carol relative z-10 w-auto object-contain object-bottom pointer-events-none mx-auto"
+                                        style="height: clamp(420px, 62vh, 720px); max-height: 75vh; max-width: 48vw;"
                                     />
                                 </div>
                             </div>
 
                             <!-- ÁREA INFERIOR: Faixa Editorial -->
-                            <div class="about-bottom-band w-full relative z-20 pointer-events-auto flex items-center" style="padding: clamp(24px, 3vh, 42px) clamp(20px, 2vw, 36px);">
+                            <div class="about-bottom-band w-full relative z-20 pointer-events-auto flex items-center shrink-0" style="padding-top: clamp(18px, 2.2vh, 30px); padding-bottom: clamp(18px, 2.2vh, 30px);">
                                 <div class="about-band-line absolute top-0 left-0 w-full h-[1px] bg-[#D1A77D]/35 origin-left"></div>
                                 <div class="w-full grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0">
                                     <!-- Pillar 1 -->
-                                    <div class="about-service flex flex-col gap-[12px] lg:gap-[18px] lg:px-6">
+                                    <div class="about-service flex flex-col gap-[10px] lg:gap-[16px] lg:px-6">
                                         <span class="font-serif text-[1rem] lg:text-[1.3rem] text-[#D1A77D]">01</span>
-                                        <h3 class="font-serif uppercase text-[#E6C49E]" style="font-size: clamp(1.3rem, 1.6vw, 2rem); line-height: 1.05;">Arquitetura<br>de Interiores</h3>
-                                        <p class="font-sans text-[rgba(241,236,229,0.78)] leading-[1.5]" style="font-size: clamp(.85rem, .9vw, 1rem);">Ambientes funcionais,<br>estéticos e personalizados.</p>
+                                        <h3 class="font-serif uppercase text-[#E6C49E]" style="font-size: clamp(1.05rem, 1.35vw, 1.65rem); line-height: 1.05;">Arquitetura<br>de Interiores</h3>
+                                        <p class="font-sans text-[rgba(241,236,229,0.78)] leading-[1.5]" style="font-size: clamp(.78rem, .85vw, .95rem);">Ambientes funcionais,<br>estéticos e personalizados.</p>
                                     </div>
                                     <!-- Pillar 2 -->
-                                    <div class="about-service flex flex-col gap-[12px] lg:gap-[18px] lg:px-6 lg:border-l lg:border-[#D1A77D]/20">
+                                    <div class="about-service flex flex-col gap-[10px] lg:gap-[16px] lg:px-6 lg:border-l lg:border-[#D1A77D]/20">
                                         <span class="font-serif text-[1rem] lg:text-[1.3rem] text-[#D1A77D]">02</span>
-                                        <h3 class="font-serif uppercase text-[#E6C49E]" style="font-size: clamp(1.3rem, 1.6vw, 2rem); line-height: 1.05;">Residencial</h3>
-                                        <p class="font-sans text-[rgba(241,236,229,0.78)] leading-[1.5]" style="font-size: clamp(.85rem, .9vw, 1rem);">Soluções completas para<br>transformar casas em lares.</p>
+                                        <h3 class="font-serif uppercase text-[#E6C49E]" style="font-size: clamp(1.05rem, 1.35vw, 1.65rem); line-height: 1.05;">Residencial</h3>
+                                        <p class="font-sans text-[rgba(241,236,229,0.78)] leading-[1.5]" style="font-size: clamp(.78rem, .85vw, .95rem);">Soluções completas para<br>transformar casas em lares.</p>
                                     </div>
                                     <!-- Pillar 3 -->
-                                    <div class="about-service flex flex-col gap-[12px] lg:gap-[18px] lg:px-6 lg:border-l lg:border-[#D1A77D]/20">
+                                    <div class="about-service flex flex-col gap-[10px] lg:gap-[16px] lg:px-6 lg:border-l lg:border-[#D1A77D]/20">
                                         <span class="font-serif text-[1rem] lg:text-[1.3rem] text-[#D1A77D]">03</span>
-                                        <h3 class="font-serif uppercase text-[#E6C49E]" style="font-size: clamp(1.3rem, 1.6vw, 2rem); line-height: 1.05;">Comercial</h3>
-                                        <p class="font-sans text-[rgba(241,236,229,0.78)] leading-[1.5]" style="font-size: clamp(.85rem, .9vw, 1rem);">Projetos que fortalecem<br>marcas e elevam experiências.</p>
+                                        <h3 class="font-serif uppercase text-[#E6C49E]" style="font-size: clamp(1.05rem, 1.35vw, 1.65rem); line-height: 1.05;">Comercial</h3>
+                                        <p class="font-sans text-[rgba(241,236,229,0.78)] leading-[1.5]" style="font-size: clamp(.78rem, .85vw, .95rem);">Projetos que fortalecem<br>marcas e elevam experiências.</p>
                                     </div>
                                     <!-- Pillar 4 -->
-                                    <div class="about-service flex flex-col gap-[12px] lg:gap-[18px] lg:px-6 lg:border-l lg:border-[#D1A77D]/20">
+                                    <div class="about-service flex flex-col gap-[10px] lg:gap-[16px] lg:px-6 lg:border-l lg:border-[#D1A77D]/20">
                                         <span class="font-serif text-[1rem] lg:text-[1.3rem] text-[#D1A77D]">04</span>
-                                        <h3 class="font-serif uppercase text-[#E6C49E]" style="font-size: clamp(1.3rem, 1.6vw, 2rem); line-height: 1.05;">Acompanhamento<br>Completo</h3>
-                                        <p class="font-sans text-[rgba(241,236,229,0.78)] leading-[1.5]" style="font-size: clamp(.85rem, .9vw, 1rem);">Do conceito à execução,<br>com atenção a cada etapa.</p>
+                                        <h3 class="font-serif uppercase text-[#E6C49E]" style="font-size: clamp(1.05rem, 1.35vw, 1.65rem); line-height: 1.05;">Acompanhamento<br>Completo</h3>
+                                        <p class="font-sans text-[rgba(241,236,229,0.78)] leading-[1.5]" style="font-size: clamp(.78rem, .85vw, .95rem);">Do conceito à execução,<br>com atenção a cada etapa.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- WRAPPER MOBILE (<= 767px) -->
-                        <div class="md:hidden relative z-[2] flex flex-col w-full h-full pt-16 px-6 pointer-events-auto overflow-hidden">
+                        <div class="about-safe-container md:hidden z-[2] flex flex-col pointer-events-auto px-6">
                             <!-- Superior (Top) -->
-                            <div class="flex-1 flex flex-col justify-start relative z-10 min-h-0">
+                            <div class="flex-1 flex flex-col justify-start relative z-10 min-h-0 pt-4">
                                 <div class="about-eyebrow flex items-center justify-center gap-3 mb-2 shrink-0">
                                     <span class="uppercase tracking-[0.2em] font-semibold text-[10px] text-[var(--accent-gold)]">Sobre</span>
                                 </div>
@@ -193,12 +225,12 @@
                                 
                                 <!-- Carol Image Mobile -->
                                 <div class="w-full flex-1 min-h-0 flex justify-center relative -mb-4 overflow-hidden">
-                                    <img src="./carol-about.webp" alt="Carol Pacheco" class="about-carol relative z-10 w-full h-full object-contain object-bottom" />
+                                    <img src="./carol-about.webp" alt="Carol Pacheco" class="about-carol relative z-10 h-auto object-contain object-bottom mx-auto" style="width: min(82vw, 360px); max-height: 44vh;" />
                                 </div>
                             </div>
 
                             <!-- Bottom Area Mobile -->
-                            <div class="about-bottom-band w-full shrink-0 pb-6 relative z-20 pt-5 flex flex-col gap-5">
+                            <div class="about-bottom-band w-full shrink-0 pb-6 relative z-20 pt-5 flex flex-col gap-4">
                                 <div class="about-band-line absolute top-0 left-0 w-full h-[1px] bg-[#D1A77D]/35 origin-left"></div>
                                 <div class="about-service flex flex-col gap-1.5 border-b border-[#f1ece5]/10 pb-4">
                                     <h3 class="font-serif uppercase text-[#E6C49E] flex items-center gap-3 text-[1.4rem] leading-[1.05]">
@@ -562,7 +594,7 @@
 
                 // ABOUT ENTRA: 32% a 42%
                 masterTl.fromTo("#about", 
-                    { opacity: 0, y: 40, scale: 0.985 },
+                    { opacity: 0, y: 15, scale: 0.985 },
                     {
                         opacity: 1,
                         y: 0,
@@ -580,7 +612,7 @@
                 
                 masterTl.from(".about-title-line", { 
                     opacity: 0, 
-                    y: 35, 
+                    y: 15, 
                     duration: 4, 
                     stagger: 0.3, 
                     ease: "power2.out" 
@@ -588,7 +620,8 @@
                 
                 masterTl.from(".about-carol", { 
                     opacity: 0, 
-                    y: 30, 
+                    x: 24,
+                    scale: 0.985,
                     duration: 5, 
                     ease: "power2.out" 
                 }, 34);
@@ -608,7 +641,7 @@
                 
                 masterTl.from(".about-service", { 
                     opacity: 0, 
-                    y: 18, 
+                    y: 15, 
                     duration: 4, 
                     stagger: 0.1, 
                     ease: "power2.out" 
@@ -616,8 +649,8 @@
 
                 // ABOUT MOVIMENTO SUTIL DURANTE A PERMANÊNCIA: 42% a 55%
                 masterTl.to("#about", {
-                    y: -10,
-                    scale: 1.01,
+                    y: -5,
+                    scale: 1.005,
                     ease: "none",
                     duration: 13
                 }, 42);
@@ -625,7 +658,7 @@
                 // ABOUT SAI: 55% a 65% (Iniciando a saída suave)
                 masterTl.to("#about", {
                     opacity: 0,
-                    y: -40,
+                    y: -15,
                     scale: 0.99,
                     ease: "power2.inOut",
                     duration: 10,
