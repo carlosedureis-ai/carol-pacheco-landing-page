@@ -148,11 +148,15 @@
                                 overflow: hidden;
                             }
                         }
-                        @media (max-width: 320px) {
-                            .about-mobile-title { font-size: 2.4rem !important; }
+                        @media (max-width: 340px) {
+                            .about-mobile-title { font-size: clamp(2.35rem, 11vw, 2.55rem) !important; }
                             .about-mobile-carol { width: 220px !important; }
-                            .about-mobile-service-title { font-size: 1.35rem !important; }
-                            .about-mobile-service { padding: 16px 0 !important; }
+                            .about-mobile-service { 
+                                grid-template-columns: 44px minmax(0,1fr) 20px !important; 
+                                padding: 15px 0 !important; 
+                            }
+                            .about-mobile-service-title { font-size: clamp(1.2rem, 5.7vw, 1.35rem) !important; }
+                            .about-mobile-service p { font-size: 12.5px !important; }
                         }
                     </style>
                     <section id="about" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none" style="background: transparent !important; z-index: 4;">
@@ -225,67 +229,76 @@
                         </div>
 
                         <!-- WRAPPER MOBILE (<= 767px) -->
-                        <div class="about-mobile md:hidden z-[2] flex flex-col w-full relative pointer-events-auto" style="padding-top: clamp(92px, 13vh, 120px); padding-left: 22px; padding-right: 22px; padding-bottom: 40px; justify-content: center; min-height: 100dvh;">
+                        <div class="about-mobile md:hidden z-[2] flex flex-col pointer-events-auto" style="width: 100%; max-width: 430px; margin: 0 auto; padding-left: 22px; padding-right: 22px; box-sizing: border-box; position: relative; overflow-x: clip; padding-top: calc(92px + env(safe-area-inset-top)); padding-bottom: 40px; height: auto; min-height: 100dvh;">
                             
                             <!-- BACKGROUND OVERLAY MOBILE -->
-                            <div class="absolute inset-0 z-[-1] pointer-events-none" style="background: linear-gradient(to bottom, rgba(12,9,7,.18) 0%, rgba(12,9,7,.25) 40%, rgba(12,9,7,.50) 100%);"></div>
+                            <div class="absolute inset-0 z-[-1] pointer-events-none" style="background: linear-gradient(to bottom, rgba(13,10,8,.18) 0%, rgba(13,10,8,.24) 45%, rgba(13,10,8,.55) 100%); width: 100vw; margin-left: calc(-50vw + 50%);"></div>
 
                             <!-- 02 SOBRE -->
-                            <div class="about-mobile-eyebrow flex justify-center mb-[18px]">
-                                <span style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .30em; color: #D1A77D;">SOBRE</span>
+                            <div class="about-mobile-eyebrow flex justify-center" style="margin-bottom: 16px;">
+                                <span style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.30em; color: #D1A77D;">SOBRE</span>
                             </div>
 
                             <!-- 03 HEADLINE -->
-                            <h2 class="about-mobile-title" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(2.65rem, 11vw, 3.6rem); line-height: .95; font-weight: 500; text-align: center; max-width: 330px; margin: 0 auto; color: #F1ECE5;">
+                            <h2 class="about-mobile-title" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(2.65rem, 11.2vw, 3.45rem); line-height: 0.94; font-weight: 500; text-align: center; color: #F1ECE5; max-width: 340px; margin: 0 auto;">
                                 <div class="overflow-hidden pb-1"><div class="about-mobile-title-line">Projetos que traduzem</div></div>
                                 <div class="overflow-hidden pb-1"><div class="about-mobile-title-line">sua essência.</div></div>
                             </h2>
 
                             <!-- 04 CAROL -->
-                            <div class="carol-mobile-wrap" style="position: relative; width: 100%; display: flex; justify-content: center; margin-top: 18px; margin-bottom: -2px;">
-                                <img src="./carol-about.webp" alt="Carol Pacheco" class="about-mobile-carol" style="width: min(72vw, 290px); height: auto; max-height: 38vh; object-fit: contain; object-position: bottom center;" />
+                            <div class="about-mobile-carol-wrapper" style="width: 100%; display: flex; justify-content: center; position: relative; margin-top: 18px;">
+                                <img src="./carol-about.webp" alt="Carol Pacheco" class="about-mobile-carol" style="display: block; width: clamp(220px, 70vw, 290px); height: auto; max-height: 390px; object-fit: contain; object-position: bottom center; margin: 0 auto;" />
                             </div>
 
                             <!-- 05 PEQUENA INTRODUÇÃO -->
                             <div class="about-mobile-intro overflow-hidden">
-                                <div class="about-mobile-intro-text" style="font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.55; text-align: center; max-width: 310px; margin: 18px auto 28px; color: rgba(241,236,229,.75);">
+                                <div class="about-mobile-intro-text" style="font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.55; font-weight: 400; text-align: center; max-width: 310px; margin: 16px auto 28px; color: rgba(241,236,229,.78);">
                                     Arquitetura pensada para transformar espaços em lugares que representam quem vive neles.
                                 </div>
                             </div>
 
+                            <!-- DIVISÓRIA EDITORIAL -->
+                            <div class="relative w-full h-[1px] flex justify-center mb-[6px]" style="background: rgba(209,167,125,.28);">
+                                <div class="absolute top-0 w-[44px] h-[2px] bg-[#D1A77D]"></div>
+                            </div>
+
                             <!-- 06 SERVIÇOS 01-04 -->
-                            <div class="about-mobile-services w-full max-w-sm mx-auto flex flex-col">
+                            <div class="about-mobile-services w-full flex flex-col">
                                 <!-- Servico 1 -->
-                                <div class="about-mobile-service" style="display: grid; grid-template-columns: 38px minmax(0, 1fr); column-gap: 12px; padding: 20px 0; align-items: start; border-bottom: 1px solid rgba(209,167,125,.20);">
-                                    <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: #D1A77D; line-height: 1; padding-top: 3px;">01</span>
+                                <div class="about-mobile-service" style="display: grid; grid-template-columns: 52px minmax(0, 1fr) 24px; column-gap: 12px; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(241,236,229,.14);">
+                                    <span style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.7rem, 7vw, 2.1rem); font-weight: 400; color: #D1A77D; line-height: 1; border-right: 1px solid rgba(209,167,125,.30); padding-right: 12px; height: 100%; display: flex; align-items: center;">01</span>
                                     <div style="min-width: 0; overflow-wrap: normal;">
-                                        <h3 class="about-mobile-service-title" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.45rem, 6.3vw, 1.8rem); line-height: 1.02; font-weight: 500; color: #E6C49E; letter-spacing: .01em;">ARQUITETURA DE INTERIORES</h3>
-                                        <p style="font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.5; color: rgba(241,236,229,.78); margin-top: 8px; max-width: 28ch;">Ambientes funcionais, estéticos e personalizados.</p>
+                                        <h3 class="about-mobile-service-title" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.25rem, 5.7vw, 1.65rem); line-height: 1.05; font-weight: 500; text-transform: uppercase; color: #D1A77D; max-width: 100%;">ARQUITETURA DE INTERIORES</h3>
+                                        <p style="font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.45; color: rgba(241,236,229,.76); margin-top: 6px; max-width: 30ch;">Ambientes funcionais, estéticos e personalizados.</p>
                                     </div>
+                                    <span style="font-size: 1.4rem; color: #D1A77D; opacity: .85; text-align: right;">&rarr;</span>
                                 </div>
                                 <!-- Servico 2 -->
-                                <div class="about-mobile-service" style="display: grid; grid-template-columns: 38px minmax(0, 1fr); column-gap: 12px; padding: 20px 0; align-items: start; border-bottom: 1px solid rgba(209,167,125,.20);">
-                                    <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: #D1A77D; line-height: 1; padding-top: 3px;">02</span>
+                                <div class="about-mobile-service" style="display: grid; grid-template-columns: 52px minmax(0, 1fr) 24px; column-gap: 12px; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(241,236,229,.14);">
+                                    <span style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.7rem, 7vw, 2.1rem); font-weight: 400; color: #D1A77D; line-height: 1; border-right: 1px solid rgba(209,167,125,.30); padding-right: 12px; height: 100%; display: flex; align-items: center;">02</span>
                                     <div style="min-width: 0; overflow-wrap: normal;">
-                                        <h3 class="about-mobile-service-title" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.45rem, 6.3vw, 1.8rem); line-height: 1.02; font-weight: 500; color: #E6C49E; letter-spacing: .01em;">RESIDENCIAL</h3>
-                                        <p style="font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.5; color: rgba(241,236,229,.78); margin-top: 8px; max-width: 28ch;">Soluções completas para transformar casas em lares.</p>
+                                        <h3 class="about-mobile-service-title" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.25rem, 5.7vw, 1.65rem); line-height: 1.05; font-weight: 500; text-transform: uppercase; color: #D1A77D; max-width: 100%;">RESIDENCIAL</h3>
+                                        <p style="font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.45; color: rgba(241,236,229,.76); margin-top: 6px; max-width: 30ch;">Soluções completas para transformar casas em lares.</p>
                                     </div>
+                                    <span style="font-size: 1.4rem; color: #D1A77D; opacity: .85; text-align: right;">&rarr;</span>
                                 </div>
                                 <!-- Servico 3 -->
-                                <div class="about-mobile-service" style="display: grid; grid-template-columns: 38px minmax(0, 1fr); column-gap: 12px; padding: 20px 0; align-items: start; border-bottom: 1px solid rgba(209,167,125,.20);">
-                                    <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: #D1A77D; line-height: 1; padding-top: 3px;">03</span>
+                                <div class="about-mobile-service" style="display: grid; grid-template-columns: 52px minmax(0, 1fr) 24px; column-gap: 12px; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(241,236,229,.14);">
+                                    <span style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.7rem, 7vw, 2.1rem); font-weight: 400; color: #D1A77D; line-height: 1; border-right: 1px solid rgba(209,167,125,.30); padding-right: 12px; height: 100%; display: flex; align-items: center;">03</span>
                                     <div style="min-width: 0; overflow-wrap: normal;">
-                                        <h3 class="about-mobile-service-title" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.45rem, 6.3vw, 1.8rem); line-height: 1.02; font-weight: 500; color: #E6C49E; letter-spacing: .01em;">COMERCIAL</h3>
-                                        <p style="font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.5; color: rgba(241,236,229,.78); margin-top: 8px; max-width: 28ch;">Projetos que fortalecem marcas e elevam experiências.</p>
+                                        <h3 class="about-mobile-service-title" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.25rem, 5.7vw, 1.65rem); line-height: 1.05; font-weight: 500; text-transform: uppercase; color: #D1A77D; max-width: 100%;">COMERCIAL</h3>
+                                        <p style="font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.45; color: rgba(241,236,229,.76); margin-top: 6px; max-width: 30ch;">Projetos que fortalecem marcas e elevam experiências.</p>
                                     </div>
+                                    <span style="font-size: 1.4rem; color: #D1A77D; opacity: .85; text-align: right;">&rarr;</span>
                                 </div>
                                 <!-- Servico 4 -->
-                                <div class="about-mobile-service" style="display: grid; grid-template-columns: 38px minmax(0, 1fr); column-gap: 12px; padding: 20px 0; align-items: start; border-bottom: 1px solid rgba(209,167,125,.20);">
-                                    <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: #D1A77D; line-height: 1; padding-top: 3px;">04</span>
+                                <div class="about-mobile-service" style="display: grid; grid-template-columns: 52px minmax(0, 1fr) 24px; column-gap: 12px; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(241,236,229,.14);">
+                                    <span style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.7rem, 7vw, 2.1rem); font-weight: 400; color: #D1A77D; line-height: 1; border-right: 1px solid rgba(209,167,125,.30); padding-right: 12px; height: 100%; display: flex; align-items: center;">04</span>
                                     <div style="min-width: 0; overflow-wrap: normal;">
-                                        <h3 class="about-mobile-service-title" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.45rem, 6.3vw, 1.8rem); line-height: 1.02; font-weight: 500; color: #E6C49E; letter-spacing: .01em;">ACOMPANHAMENTO COMPLETO</h3>
-                                        <p style="font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.5; color: rgba(241,236,229,.78); margin-top: 8px; max-width: 28ch;">Do conceito à execução, com atenção a cada etapa.</p>
+                                        <h3 class="about-mobile-service-title" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.25rem, 5.7vw, 1.65rem); line-height: 1.05; font-weight: 500; text-transform: uppercase; color: #D1A77D; max-width: 100%;">ACOMPANHAMENTO COMPLETO</h3>
+                                        <p style="font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.45; color: rgba(241,236,229,.76); margin-top: 6px; max-width: 30ch;">Do conceito à execução, com atenção a cada etapa.</p>
                                     </div>
+                                    <span style="font-size: 1.4rem; color: #D1A77D; opacity: .85; text-align: right;">&rarr;</span>
                                 </div>
                             </div>
                         </div>
@@ -679,11 +692,11 @@
                 }, 35);
 
                 // ANIMAÇÕES ABOUT MOBILE
-                masterTl.from(".about-mobile-eyebrow", { opacity: 0, y: 10, duration: 3, ease: "power2.out" }, 33);
-                masterTl.from(".about-mobile-title-line", { opacity: 0, y: 16, duration: 4, stagger: 0.2, ease: "power2.out" }, 33.5);
-                masterTl.from(".about-mobile-carol", { opacity: 0, y: 18, scale: 0.98, duration: 5, ease: "power2.out" }, 34);
-                masterTl.from(".about-mobile-intro", { opacity: 0, y: 10, duration: 4, ease: "power2.out" }, 34.5);
-                masterTl.from(".about-mobile-service", { opacity: 0, y: 12, duration: 4, stagger: 0.1, ease: "power2.out" }, 35);
+                masterTl.from(".about-mobile-eyebrow", { opacity: 0, y: 8, duration: 3, ease: "power2.out" }, 33);
+                masterTl.from(".about-mobile-title-line", { opacity: 0, y: 14, duration: 4, stagger: 0.2, ease: "power2.out" }, 33.5);
+                masterTl.from(".about-mobile-carol", { opacity: 0, y: 14, scale: 0.99, duration: 5, ease: "power2.out" }, 34);
+                masterTl.from(".about-mobile-intro", { opacity: 0, duration: 4, ease: "power2.out" }, 34.5);
+                masterTl.from(".about-mobile-service", { opacity: 0, y: 10, duration: 4, stagger: 0.06, ease: "power2.out" }, 35);
 
                 // ABOUT MOVIMENTO SUTIL DURANTE A PERMANÊNCIA: 42% a 55%
                 masterTl.to("#about", {
